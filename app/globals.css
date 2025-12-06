@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
 
 :root {
   --background: #ffffff;
@@ -10,6 +13,11 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,4 +31,61 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* HERO SLIDER – umumiy konteyner */
+.hero-swiper {
+  position: relative;
+  width: 100%;
+}
+
+/* Prev/Next tugmalari – rasmga o‘xshash minimal o‘qlar */
+.hero-swiper .swiper-button-prev,
+.hero-swiper .swiper-button-next {
+  color: #2f2f2f;
+  width: 32px;
+  height: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+}
+
+.hero-swiper .swiper-button-prev {
+  left: -32px; /* slayderdan tashqariga chiqib turadi */
+}
+
+.hero-swiper .swiper-button-next {
+  right: -32px;
+}
+
+.hero-swiper .swiper-button-prev::after,
+.hero-swiper .swiper-button-next::after {
+  font-size: 26px; /* rasmga o‘xshash nozik o‘q */
+  font-weight: 300;
+}
+
+.hero-swiper .swiper-button-prev:hover,
+.hero-swiper .swiper-button-next:hover {
+  color: #c79b60;
+}
+
+/* Pagination – markazda, kichik nuqtalar */
+.hero-swiper .swiper-pagination {
+  bottom: -26px; /* slayder ostida */
+}
+
+.hero-swiper .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: #e0ddd7;
+  opacity: 1;
+  margin: 0 4px !important;
+  border-radius: 9999px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.hero-swiper .swiper-pagination-bullet-active {
+  background: #c79b60;
+  transform: scale(1.1);
 }
