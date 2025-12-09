@@ -5,8 +5,14 @@ import Link from "next/link";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 const Footer = () => {
+  // Top barga o‘xshash hover-underline klassi
+  const footerLinkClass =
+    "relative inline-flex items-center pb-[2px] " +
+    "after:absolute after:left-0 after:-bottom-[1px] after:h-[1px] after:bg-[#d7b06a] after:transition-all after:w-0 " +
+    "hover:text-[#d7b06a] hover:after:w-full";
+
   return (
-    <footer className="mt-20 bg-[#120f0f] text-[#f5eee5]">
+    <footer className=" bg-[#120f0f] text-[#f5eee5]">
       <section className="relative bg-[url('/images/footer-bg.jpg')] bg-cover bg-center">
         {/* qorong'i overlay */}
         <div className="absolute inset-0 bg-black/60" />
@@ -28,11 +34,8 @@ const Footer = () => {
                     "Контакты",
                   ].map((item, idx) => (
                     <li key={idx}>
-                      <Link
-                        href="/"
-                        className="flex items-center gap-1 hover:text-[#d7b06a] cursor-pointer transition-colors duration-200 group"
-                      >
-                        {item}
+                      <Link href="/" className="group flex items-center gap-1">
+                        <span className={footerLinkClass}>{item}</span>
                       </Link>
                     </li>
                   ))}
@@ -55,11 +58,13 @@ const Footer = () => {
                     "Лабрадорит",
                     "Эксклюзивные камни",
                   ].map((item, idx) => (
-                    <li
-                      key={idx}
-                      className="hover:text-[#d7b06a] cursor-pointer transition-colors"
-                    >
-                      {item}
+                    <li key={idx}>
+                      <button
+                        type="button"
+                        className={`${footerLinkClass} cursor-pointer bg-transparent border-none outline-none`}
+                      >
+                        {item}
+                      </button>
                     </li>
                   ))}
                 </ul>
@@ -85,11 +90,13 @@ const Footer = () => {
                     "Мозаика",
                     "Внешняя отделка",
                   ].map((item, idx) => (
-                    <li
-                      key={idx}
-                      className="hover:text-[#d7b06a] cursor-pointer transition-colors"
-                    >
-                      {item}
+                    <li key={idx}>
+                      <button
+                        type="button"
+                        className={`${footerLinkClass} cursor-pointer bg-transparent border-none outline-none`}
+                      >
+                        {item}
+                      </button>
                     </li>
                   ))}
                 </ul>
@@ -97,17 +104,16 @@ const Footer = () => {
 
               {/* RIGHT: LOGO BLOCK + INFO */}
               <div className="flex flex-1 flex-col gap-4 lg:items-end">
-                {/* LOGO + MATN BLOKI */}
                 <Link
                   href="/"
                   className="mb-3 cursor-pointer hover:opacity-90 transition flex items-center gap-4 lg:justify-end"
                 >
                   <Image
                     alt="site logo"
-                    width={70}
-                    height={70}
+                    width={180}
+                    height={110}
                     src="/images/svg/logof.svg"
-                    className="w-[64px] h-[64px] object-contain"
+                    className="w-[180px] h-[130px] object-contain"
                   />
                 </Link>
 
@@ -127,7 +133,7 @@ const Footer = () => {
                   <p className="mt-3">
                     <a
                       href="tel:+79040395226"
-                      className="flex justify-start lg:justify-end items-center gap-2 hover:text-[#d7b06a] transition cursor-pointer"
+                      className={`${footerLinkClass} flex justify-start lg:justify-end items-center gap-2`}
                     >
                       <Phone className="w-4 h-4 text-[#d7b06a]" />
                       +7 (904) 039 52 26
@@ -137,7 +143,7 @@ const Footer = () => {
                   <p>
                     <a
                       href="mailto:info@marble-moscow.ru"
-                      className="flex justify-start lg:justify-end items-center gap-2 hover:text-[#d7b06a] transition cursor-pointer"
+                      className={`${footerLinkClass} flex justify-start lg:justify-end items-center gap-2`}
                     >
                       <Mail className="w-4 h-4 text-[#d7b06a]" />
                       info@marble-moscow.ru
@@ -148,7 +154,7 @@ const Footer = () => {
             </div>
 
             {/* COPYRIGHT LINE */}
-            <div className="mt-12 border-top border-white/10 pt-5 text-center text-[11px] md:text-xs text-[#c9b9a1] border-t border-white/10">
+            <div className="mt-12 border-t border-white/10 pt-5 text-center text-[11px] md:text-xs text-[#c9b9a1]">
               © 2025 МАСТЕРСКАЯ МРАМОРНЫХ ИНТЕРЬЕРОВ. Информация на сайте не
               является публичной офертой. Уточняйте стоимость у менеджера отдела
               продаж.

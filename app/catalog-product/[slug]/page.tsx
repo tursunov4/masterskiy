@@ -1,6 +1,4 @@
 // app/catalog/floors/page.tsx
-import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
 import PersonalConsultSection from "@/components/sections/PersonalConsultSection";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -65,7 +63,6 @@ const products: Product[] = [
 export default function FloorsPage() {
   return (
     <>
-      <Header />
       <main className="bg-white pb-16 pt-6">
         <div className="container mx-auto px-4">
           {/* BREADCRUMB */}
@@ -209,7 +206,6 @@ export default function FloorsPage() {
         </div>
         <PersonalConsultSection />
       </main>
-      <Footer />
     </>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 
@@ -47,6 +48,7 @@ const slides = [
       "Комплексное оснащение SPA-зон",
       "Авторские мозаичные панно",
       "Премиальные материалы",
+      "Эксклюзивные коллекции камня",
     ],
     buttonText: "ПОДРОБНЕЕ",
   },
@@ -68,9 +70,7 @@ const HeroSlider = () => {
 
   const handleBulletClick = (index: number) => {
     if (!swiperInstance) return;
-    // loop yoq bo‘lmaganda:
-    swiperInstance.slideTo(index);
-    // agar loop yoqsang: swiperInstance.slideToLoop(index);
+    swiperInstance.slideToLoop(index);
   };
 
   return (
@@ -82,12 +82,11 @@ const HeroSlider = () => {
             loop
             autoplay={{ delay: 5000, disableOnInteraction: false }}
             onSwiper={setSwiperInstance}
-            onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+            onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
           >
             {slides.map((slide) => (
               <SwiperSlide key={slide.id}>
-                <div className="relative mx-auto h-[230px] sm:h-[280px] lg:h-[340px] xl:h-[360px] max-w-5xl overflow-hidden bg-black">
-                  {/* Background image */}
+                <div className="relative mx-auto h-[230px] sm:h-[280px] lg:h-[330px] xl:h-[360px] md:max-w-[calc(100%-70px)] overflow-hidden bg-black">
                   <Image
                     src={slide.image}
                     alt={slide.title}
@@ -96,30 +95,33 @@ const HeroSlider = () => {
                     className="object-cover"
                   />
 
-                  {/* Right dark panel */}
-                  <div className="absolute inset-y-0 right-0 w-full sm:w-[48%] bg-gradient-to-l from-black/85 via-black/70 to-transparent px-6 sm:px-10 py-6 flex items-center justify-end">
-                    <div className="max-w-md text-right text-[#f5eee5]">
-                      <h2 className="mb-4 text-xl sm:text-2xl lg:text-3xl tracking-[0.18em] uppercase">
-                        {slide.title}
-                      </h2>
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-black/75" />
 
-                      <ul className="mb-6 space-y-1.5 text-xs sm:text-sm">
-                        {slide.bullets.map((item) => (
-                          <li
-                            key={item}
-                            className="flex items-start justify-end gap-2"
-                          >
-                            <span className="text-[#d7b06a] text-base leading-none">
-                              ✓
-                            </span>
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="flex w-full justify-center sm:justify-end px-4 sm:px-8 lg:px-10">
+                      <div className="max-w-xl text-left text-[#f6f0e8]">
+                        <h2 className="mb-4 font-serif text-xl sm:text-2xl lg:text-[32px] leading-tight tracking-[0.16em] uppercase">
+                          {slide.title}
+                        </h2>
 
-                      <button className="inline-flex bg-[#c79b60] px-6 py-2 text-xs sm:text-sm uppercase tracking-[0.12em] text-[#231f20] hover:bg-[#d8b976] transition-colors">
-                        {slide.buttonText}
-                      </button>
+                        <ul className="mb-6 space-y-1.5 text-xs sm:text-sm md:text-base font-serif">
+                          {slide.bullets.map((item) => (
+                            <li
+                              key={item}
+                              className="flex items-baseline gap-2 text-[#f6f0e8]"
+                            >
+                              <span className="text-base leading-none">✓</span>
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+
+                        <Link href="/catalog-stone">
+                          <button className="inline-flex px-8 py-3 bg-[#c8a36a] text-xs sm:text-sm md:text-base font-semibold tracking-[0.14em] uppercase text-[#2b2523] hover:bg-[#d7b77d] transition-colors">
+                            {slide.buttonText}
+                          </button>
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -127,25 +129,53 @@ const HeroSlider = () => {
             ))}
           </Swiper>
 
-          {/* CUSTOM PREV / NEXT BUTTONS */}
+          {/* Prev button */}
           <button
             type="button"
             onClick={handlePrev}
-            className="absolute left-0 sm:-left-6 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/80 hover:bg-white shadow-md transition-colors"
+            className="absolute left-0 sm:-left-6 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center"
           >
-            <span className="text-2xl leading-none text-[#333]">&lt;</span>
+            <svg
+              width="40"
+              height="80"
+              viewBox="0 0 40 80"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M30 5 L10 40 L30 75"
+                stroke="#2B2523"
+                strokeWidth="6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </button>
 
           <button
             type="button"
             onClick={handleNext}
-            className="absolute right-0 sm:-right-6 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/80 hover:bg-white shadow-md transition-colors"
+            className="absolute right-0 sm:-right-6 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center"
           >
-            <span className="text-2xl leading-none text-[#333]">&gt;</span>
+            <svg
+              width="40"
+              height="80"
+              viewBox="0 0 40 80"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10 5 L30 40 L10 75"
+                stroke="#2B2523"
+                strokeWidth="6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </button>
 
           <div className="mt-4 flex justify-center">
-            <div className="inline-flex items-center gap-2  ">
+            <div className="inline-flex items-center gap-2">
               {slides.map((_, index) => {
                 const isActive = index === activeIndex;
                 return (
@@ -155,8 +185,8 @@ const HeroSlider = () => {
                     onClick={() => handleBulletClick(index)}
                     className={`h-2.5 w-2.5 rounded-full transition-all ${
                       isActive
-                        ? "bg-[#c79b60] scale-110"
-                        : "bg-[#dcd5c9] hover:bg-[#c79b60]/70"
+                        ? "bg-[#c8a36a] scale-110"
+                        : "bg-[#dcd5c9] hover:bg-[#c8a36a]/70"
                     }`}
                   >
                     <span className="sr-only">

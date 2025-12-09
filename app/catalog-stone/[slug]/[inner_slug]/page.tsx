@@ -34,19 +34,19 @@ const workExamples: WorkExample[] = [
     id: 1,
     category: "Полы",
     article: "ПОI17115AA01",
-    image: "/images/examples/floor-living.jpg",
+    image: "/images/png/mramr2.png",
   },
   {
     id: 2,
     category: "Полы",
     article: "ПОО21215AS01",
-    image: "/images/examples/floor-hall.jpg",
+    image: "/images/png/mramr2.png",
   },
   {
     id: 3,
     category: "Столешницы",
     article: "ПОО09316AA08",
-    image: "/images/examples/countertop-kitchen.jpg",
+    image: "/images/png/mramr2.png",
   },
 ];
 
@@ -61,19 +61,19 @@ const related: RelatedMarble[] = [
     id: 1,
     name: "Мрамор Bianco Carrara",
     price: "Цена: от 10 000 руб./м²",
-    image: "/images/marble/bianco-1.jpg",
+    image: "/images/png/mramr2.png",
   },
   {
     id: 2,
     name: "Мрамор Bianco Carrara",
     price: "Цена: от 10 000 руб./м²",
-    image: "/images/marble/bianco-2.jpg",
+    image: "/images/png/mramr2.png",
   },
   {
     id: 3,
     name: "Мрамор Bianco Carrara",
     price: "Цена: от 10 000 руб./м²",
-    image: "/images/marble/bianco-3.jpg",
+    image: "/images/png/mramr2.png",
   },
 ];
 
@@ -81,11 +81,11 @@ const related: RelatedMarble[] = [
 
 export default function MarbleSivecPage() {
   return (
-    <main className="bg-white pb-16 pt-6">
-      <div className="container mx-auto px-4">
+    <main className="">
+      <div className="">
         <Breadcrumb />
 
-        <div className="border-x border-b border-black/40">
+        <div className="container">
           <TitleSection />
 
           <SpecsSection />
@@ -101,14 +101,22 @@ export default function MarbleSivecPage() {
   );
 }
 
-// ---------- COMPONENTS (SECTIONS) ----------
-
 const Breadcrumb = () => (
-  <div className="border-x border-t border-black/40">
-    <p className="py-2 text-center text-xs tracking-[0.12em]">
-      Главная / Каталог камня / Мрамор / Артикул KA181115AA01 - Sivec
-    </p>
-  </div>
+  <>
+    <div className=" bg-[#f8f4ee]">
+      <p className="py-2 text-center text-xs tracking-[0.12em]">
+        <Link href="/" className="hover:underline">
+          Главная
+        </Link>{" "}
+        /{" "}
+        <Link href="/catalog-stone" className="hover:underline">
+          Каталог камня
+        </Link>{" "}
+        / <Link href="/catalog-stone/mramr">Мрамор</Link> /{" "}
+        <span>Артикул KA181115AA01 - Sivec</span>
+      </p>
+    </div>
+  </>
 );
 
 const TitleSection = () => (
@@ -119,7 +127,6 @@ const TitleSection = () => (
         Мрамор Sivec
       </h1>
     </div>
-    <div className="border-t border-black/40" />
   </>
 );
 
@@ -131,7 +138,7 @@ const SpecsSection = () => (
       <div>
         <div className="relative h-[260px] sm:h-[320px] md:h-[360px] border border-black/20">
           <Image
-            src="/images/marble/sivec-slab-big.jpg"
+            src="/images/png/mramr2.png"
             alt="Мрамор Sivec"
             fill
             className="object-cover"
@@ -193,7 +200,6 @@ const SpecsSection = () => (
   </section>
 );
 
-// 2) EXAMPLES GRID
 const ExamplesSection = () => (
   <section className="px-4 pb-10 pt-4">
     <h2 className="mb-4 text-center text-lg tracking-[0.18em] uppercase">
@@ -219,14 +225,6 @@ const ExamplesSection = () => (
             <span className="bg-[#c79b60] px-2 py-1">Арт.: {item.article}</span>
           </div>
         </article>
-      ))}
-
-      {/* Bo'sh joylar (maketdagi kabi) */}
-      {Array.from({ length: 6 }).map((_, i) => (
-        <div
-          key={`empty-${i}`}
-          className="hidden h-[220px] border border-dashed border-black/20 md:block"
-        />
       ))}
     </div>
   </section>
@@ -263,7 +261,6 @@ const ShowMoreWithPagination = () => (
   </section>
 );
 
-// 3) RELATED CAROUSEL / STRIP
 const RelatedSection = () => (
   <section className="px-4 pb-10 pt-4">
     <div className="flex flex-col items-center">

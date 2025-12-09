@@ -1,6 +1,4 @@
 // app/catalog/floors/sivec/page.tsx
-import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,7 +10,6 @@ export const metadata: Metadata = {
 export default function FloorSivecPage() {
   return (
     <>
-      <Header />
       <main className="bg-white pb-16 pt-6">
         <div className="container mx-auto px-4">
           {/* BREADCRUMB */}
@@ -146,7 +143,6 @@ export default function FloorSivecPage() {
           </div>
         </div>
       </main>
-      <Footer />
     </>
   );
 }

@@ -1,6 +1,8 @@
 import localFont from "next/font/local";
 import type { Metadata } from "next";
 import "./globals.css";
+import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/header/Header";
 const palatino = localFont({
   src: [
     {
@@ -39,7 +41,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${palatino.variable} antialiased`}>{children}</body>
+      <body className={`${palatino.variable} antialiased`}>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

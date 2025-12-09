@@ -3,22 +3,21 @@ import Link from "next/link";
 
 export default function IdeaConsultSection() {
   return (
-    <section className="relative h-[260px] sm:h-[300px] lg:h-[360px] w-full overflow-hidden border-y border-[#bfa05a]">
+    <section className="relative h-[240px] sm:h-[300px] lg:h-[300px] w-full overflow-hidden ">
       {/* BACKGROUND IMAGE */}
       <Image
-        src="/images/idea-bg.jpg" // 🔥 rasmni o'zing almashtirasan
+        src="/images/png/catalogproductbanner.png" // 🔥 rasmni o'zing almashtirasan
         alt="Интерьер"
         fill
         priority
         className="object-cover"
       />
 
-      {/* OVERLAY (optional, very subtle) */}
       <div className="absolute inset-0 bg-black/10" />
 
       {/* CENTER CARD */}
-      <div className="absolute inset-0 flex items-center justify-center px-4">
-        <div className="bg-[#e5e2d6] px-6 py-5 sm:px-8 sm:py-6 max-w-[420px] shadow-md">
+      <div className="absolute container flex items-center justify-center px-4">
+        <div className="bg-[#e5e2d6] px-6 py-5 sm:px-8 sm:py-4 max-w-[360px] shadow-md">
           {/* TITLE */}
           <h3 className="text-center text-lg sm:text-xl mb-3 font-[500]">
             Появились идеи?
