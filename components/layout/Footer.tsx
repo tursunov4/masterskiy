@@ -106,20 +106,9 @@ const Footer = () => {
                     alt="site logo"
                     width={70}
                     height={70}
-                    src="/images/logo.jpg"
+                    src="/images/svg/logof.svg"
                     className="w-[64px] h-[64px] object-contain"
                   />
-
-                  <div className="leading-tight text-left lg:text-right">
-                    <div className="text-[18px] md:text-[20px] tracking-[0.22em] uppercase">
-                      МАСТЕРСКАЯ
-                    </div>
-                    <div className="mt-1 flex items-center gap-2 justify-start lg:justify-end text-[9px] md:text-[10px] tracking-[0.26em] uppercase">
-                      <span className="inline-block w-1.5 h-1.5 bg-[#f5eee5]" />
-                      <span>МРАМОРНЫХ ИНТЕРЬЕРОВ</span>
-                      <span className="inline-block w-1.5 h-1.5 bg-[#f5eee5]" />
-                    </div>
-                  </div>
                 </Link>
 
                 {/* COMPANY INFO */}

@@ -61,20 +61,12 @@ const Header = () => {
             >
               <div className="flex items-center gap-3">
                 <Image
-                  src="/images/logo.jpg" // faqat ikonka
+                  src="/images/svg/logo.svg"
                   alt="site logo"
                   width={70}
-                  height={70}
-                  className="w-[54px] h-[54px] md:w-[60px] md:h-[60px] object-contain"
+                  height={200}
+                  className="w-[44px] h-[150px] md:w-[240px] md:h-[70px] object-contain"
                 />
-                <div className="hidden sm:block leading-tight text-left">
-                  <div className="text-[18px] md:text-[20px] tracking-[0.32em] uppercase text-[#e3e2dd]">
-                    МАСТЕРСКАЯ
-                  </div>
-                  <div className="mt-[2px] text-[8px] md:text-[9px] tracking-[0.32em] uppercase text-[#cbc7bf]">
-                    ■ МРАМОРНЫХ ИНТЕРЬЕРОВ ■
-                  </div>
-                </div>
               </div>
             </Link>
 
