@@ -65,7 +65,7 @@ const Header = () => {
                   alt="site logo"
                   width={70}
                   height={200}
-                  className="w-[44px] h-[150px] md:w-[240px] md:h-[70px] object-contain"
+                  className="w-[110px] h-[40px] md:w-[250px] md:h-[60px] object-contain"
                 />
               </div>
             </Link>
