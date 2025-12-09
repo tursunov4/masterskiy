@@ -83,7 +83,6 @@ export default function CatalogPage() {
           </div>
 
           <div className="px-4 pb-10 pt-8">
-            {/* 1 / 2 / 3 ustunli responsive grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-10 gap-x-10 justify-items-center">
               {categories.map((category) => (
                 <div

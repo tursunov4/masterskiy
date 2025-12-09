@@ -19,31 +19,31 @@ const items: ChurchItem[] = [
   {
     id: 1,
     title: "Иконостасы и киоты",
-    image: "/images/church/iconostasis.jpg",
+    image: "/images/png/church.png",
     href: "/church-art/iconostasis",
   },
   {
     id: 2,
     title: "Престолы и жертвенники",
-    image: "/images/church/altar.jpg",
+    image: "/images/png/church.png",
     href: "/church-art/altars",
   },
   {
     id: 3,
     title: "Стены",
-    image: "/images/church/walls.jpg",
+    image: "/images/png/church.png",
     href: "/church-art/walls",
   },
   {
     id: 4,
     title: "Полы",
-    image: "/images/church/floors.jpg",
+    image: "/images/png/church.png",
     href: "/church-art/floors",
   },
   {
     id: 5,
     title: "Мозаика",
-    image: "/images/church/mosaic.jpg",
+    image: "/images/png/church.png",
     href: "/church-art/mosaic",
   },
 ];

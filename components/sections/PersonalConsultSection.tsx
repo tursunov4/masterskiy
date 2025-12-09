@@ -5,7 +5,7 @@ import React from "react";
 
 const PersonalConsultSection: React.FC = () => {
   return (
-    <section className="border-y border-black/30 bg-[#dfdfdb] py-6">
+    <section className=" bg-[#dfdfdb] py-6">
       <div className="container mx-auto px-4">
         <form
           className="flex flex-col items-stretch gap-4 md:flex-row md:items-center md:justify-between"
