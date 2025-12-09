@@ -88,32 +88,29 @@ const faq = [
 
 export default function InfoPage() {
   return (
-    <main className="bg-white pb-16 pt-6">
-      <div className="container mx-auto px-4">
-        {/* BREADCRUMB */}
-        <div className="border-x border-t border-black/40">
-          <p className="py-2 text-center text-xs tracking-[0.12em]">
-            Главная / Информация и статьи
-          </p>
-        </div>
+    <main className="">
+      <div className="bg-[#f8f4ee]">
+        <p className="py-2 text-center text-xs tracking-[0.12em]">
+          <Link href="/" className="hover:underline">
+            Главная
+          </Link>{" "}
+          / <span>Информация и статьи</span>
+        </p>
+      </div>
 
-        <div className="border-x border-b border-black/40">
-          <HeroSection />
-          <ArticlesSection />
-          <ShowMoreWithPagination />
-          <FaqSection />
-        </div>
+      <div className="container">
+        <HeroSection />
+        <ArticlesSection />
+        <ShowMoreWithPagination />
+        <FaqSection />
       </div>
     </main>
   );
 }
 
-/* ---------- HERO ---------- */
-
 function HeroSection() {
   return (
     <>
-      {/* Sarlavha */}
       <div className="flex flex-col items-center gap-2 py-4">
         <div className="h-[2px] w-24 bg-[#c79b60]" />
         <h1 className="text-lg sm:text-xl md:text-2xl tracking-[0.18em] uppercase">
@@ -124,15 +121,14 @@ function HeroSection() {
         УЗНАЙТЕ БОЛЬШЕ О НАС И НАШИХ РАБОТАХ
       </div>
 
-      {/* Katta rasm + “Статьи” */}
       <section className="relative h-[260px] sm:h-[320px] md:h-[360px]">
         <Image
-          src="/images/articles/hero-girl.jpg" // fon rasmi
+          src="/images/png/choose.png" // fon rasmi
           alt="Информация и статьи"
           fill
           className="object-cover"
         />
-        {/* ustidagi panel */}
+
         <div className="absolute left-0 top-1/3 bg-[#c79b60]/95 px-6 py-3 text-3xl sm:text-4xl md:text-5xl font-light tracking-wide text-[#2c2420]">
           Статьи
         </div>
@@ -140,8 +136,6 @@ function HeroSection() {
     </>
   );
 }
-
-/* ---------- ARTICLES GRID ---------- */
 
 function ArticlesSection() {
   return (
@@ -218,8 +212,6 @@ function ShowMoreWithPagination() {
     </section>
   );
 }
-
-/* ---------- FAQ ---------- */
 
 function FaqSection() {
   return (

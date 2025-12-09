@@ -43,28 +43,27 @@ export default function FeaturedProducts() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
           {items.map((item) => (
             <Link
-              href="/catalog"
+              href="/catalog-stone/mramor/sdfa"
               key={item.id}
               className="group flex flex-col items-center text-[#111111] cursor-pointer
-                         transition-transform duration-300 ease-out hover:-translate-y-2"
+                         transition-transform duration-300 ease-out hover:-translate-y-3"
             >
               {/* IMAGE */}
-              <div className="w-full h-[240px] md:h-[260px] relative overflow-hidden bg-[#111]">
+              <div
+                className="w-full h-[240px] md:h-[260px] relative overflow-hidden bg-[#111]
+                           rounded-sm ring-0 ring-[#d7b06a]/60
+                           transition-[transform,box-shadow,ring] duration-300
+                           group-hover:shadow-xl group-hover:shadow-black/25 group-hover:ring-[1.5px]"
+              >
                 <Image
                   src={item.image}
                   alt={item.title}
                   fill
-                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
                 />
 
-                {/* gradient overlay + 'подробнее' */}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                <div className="pointer-events-none absolute inset-x-0 bottom-3 flex justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="px-4 py-1 text-[11px] tracking-[0.18em] uppercase bg-white/90 text-[#111]">
-                    подробнее
-                  </span>
-                </div>
+                {/* yumshoq gradient overlay, lekin textsiz */}
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent opacity-0 group-hover:opacity-80 transition-opacity duration-300" />
               </div>
 
               {/* TITLE */}
@@ -97,14 +96,14 @@ export default function FeaturedProducts() {
         {/* BUTTON */}
         <div className="mt-10 flex justify-end">
           <Link
-            href="/catalog"
-            className="inline-flex items-center gap-2 border border-[#111111] px-5 py-2.5 text-[13px] md:text-[14px]
+            href="/catalog-stone"
+            className="group inline-flex items-center gap-2 border border-[#111111] px-5 py-2.5 text-[13px] md:text-[14px]
                        tracking-[0.08em] uppercase
                        hover:bg-[#111111] hover:text-white transition-colors duration-300
                        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#111111]"
           >
             Все изделия
-            <span className="text-lg transition-transform duration-300 group-hover:translate-x-0.5">
+            <span className="text-lg transform transition-transform duration-300 group-hover:translate-x-1">
               →
             </span>
           </Link>
