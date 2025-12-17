@@ -7,7 +7,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { BannerImage, getBanners } from "@/services/banners";
 
-// ✅ sizdagi eski fallback slides (dizayn logikasi shunga tayangan) :contentReference[oaicite:1]{index=1}
 const fallbackSlides = [
   {
     id: 1,
@@ -88,13 +87,11 @@ const HeroSlider = () => {
 
         if (cancelled) return;
 
-        // order bo‘yicha sort (agar backend yuborsa)
         const sorted = [...data.results].sort(
           (a, b) => (a.order ?? 9999) - (b.order ?? 9999)
         );
         setBanners(sorted);
       } catch {
-        // error bo‘lsa ham fallback ishlayveradi
         if (!cancelled) setBanners([]);
       } finally {
         if (!cancelled) setLoading(false);
@@ -155,11 +152,14 @@ const HeroSlider = () => {
                           {slide.title}
                         </h2>
                         <div
-                          className="mb-6 text-xs sm:text-sm md:text-base font-serif"
+                          className="mb-[30px] text-xs sm:text-sm md:text-base font-serif"
                           dangerouslySetInnerHTML={{ __html: slide.alt || "" }}
                         ></div>
 
-                        <Link href="/catalog-stone">
+                        <Link
+                          className="flex items-center mt-5 justify-end"
+                          href="/catalog-stone"
+                        >
                           <button className="inline-flex px-8 py-3 bg-[#c8a36a] text-xs sm:text-sm md:text-base font-semibold tracking-[0.14em] uppercase text-[#2b2523] hover:bg-[#d7b77d] transition-colors">
                             {slide.buttonText}
                           </button>
@@ -179,41 +179,40 @@ const HeroSlider = () => {
             className="absolute left-0 sm:-left-6 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center"
           >
             <svg
-              width="40"
-              height="80"
-              viewBox="0 0 40 80"
+              width="24"
+              height="40"
+              viewBox="0 0 24 40"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M30 5 L10 40 L30 75"
-                stroke="#2B2523"
-                strokeWidth="6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                d="M22 2L2 20L22 38"
+                stroke="#2F2F2F"
+                stroke-width="4"
+                stroke-linecap="square"
+                stroke-linejoin="miter"
               />
             </svg>
           </button>
 
-          {/* Next button */}
           <button
             type="button"
             onClick={handleNext}
             className="absolute right-0 sm:-right-6 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center"
           >
             <svg
-              width="40"
-              height="80"
-              viewBox="0 0 40 80"
+              width="24"
+              height="40"
+              viewBox="0 0 24 40"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M10 5 L30 40 L10 75"
-                stroke="#2B2523"
-                strokeWidth="6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                d="M2 2L22 20L2 38"
+                stroke="#2F2F2F"
+                stroke-width="4"
+                stroke-linecap="square"
+                stroke-linejoin="miter"
               />
             </svg>
           </button>

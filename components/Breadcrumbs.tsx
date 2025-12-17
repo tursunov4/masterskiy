@@ -13,7 +13,7 @@ interface BreadcrumbsProps {
 
 const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => {
   return (
-    <div className="bg-[#d9d9d5]">
+    <div className="bg-[#f5f5f5]">
       <p className="py-2 text-center text-xs tracking-[0.12em]">
         {items.map((item, index) => (
           <span key={index}>

@@ -13,8 +13,6 @@ type ConsultState = {
   form: ConsultPayload;
   status: "idle" | "loading" | "success" | "error";
   error: string | null;
-
-  // ✅ yangi: success toast
   toast: { type: "success" | "error"; text: string } | null;
 };
 
@@ -68,7 +66,6 @@ const consultSlice = createSlice({
       state.error = null;
     },
 
-    // ✅ toast boshqaruvi
     clearToast(state) {
       state.toast = null;
     },
@@ -81,7 +78,6 @@ const consultSlice = createSlice({
       })
       .addCase(submitConsult.fulfilled, (state) => {
         state.status = "success";
-        // ✅ success message
         state.toast = {
           type: "success",
           text: "Заявка отправлена! Мы свяжемся с вами в ближайшее время.",
@@ -90,7 +86,6 @@ const consultSlice = createSlice({
       .addCase(submitConsult.rejected, (state, action) => {
         state.status = "error";
         state.error = action.payload ?? "Ошибка";
-        // ✅ error toast ham xohlasa bo‘ladi
         state.toast = {
           type: "error",
           text: state.error,

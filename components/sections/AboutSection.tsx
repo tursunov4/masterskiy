@@ -30,13 +30,11 @@ const AboutSection = () => {
           ))}
         </div>
 
-        {/* MAIN TITLE */}
         <h3 className="text-center text-xl sm:text-2xl md:text-[28px] tracking-[0.08em] uppercase">
           Мастерская мраморных интерьеров
         </h3>
 
-        {/* QUOTES BLOCK */}
-        <div className="mt-4 bg-[#c79b60] px-4 py-3 sm:px-6 sm:py-4 text-[13px] sm:text-[14px] leading-relaxed">
+        <div className="mt-4 bg-[#c0a57c] px-4 py-3 sm:px-6 sm:py-4 text-[13px] sm:text-[14px] leading-relaxed">
           <p>“Я беру камень и отсекаю всё лишнее.” — Микеланджело</p>
           <p>“И у камня есть сердце.” — японская пословица</p>
           <p>

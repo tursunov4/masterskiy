@@ -81,66 +81,70 @@ const items: EcosystemItem[] = [
 
 const EcosystemSection = () => {
   return (
-    <section className="bg-[#f5f0e7] py-12">
-      <div className="container mx-auto px-4">
-        {/* Title */}
-        <h2 className="mb-8 text-center text-lg sm:text-xl tracking-[0.16em] uppercase">
-          НАША ЭКОСИСТЕМА:
-        </h2>
+    <section className="pt-12">
+      <div className="">
+        <div className="container">
+          <h2 className="mb-8 text-center text-lg sm:text-xl tracking-[0.16em] uppercase">
+            НАША ЭКОСИСТЕМА:
+          </h2>
+        </div>
 
         <div className="space-y-8">
-          {items.map((item) => (
-            <div
-              key={item.id}
-              className="grid gap-4 border-b border-[#e0d6c6] pb-6 last:border-b-0 lg:grid-cols-[40px_minmax(0,1.7fr)_minmax(0,0.9fr)] lg:gap-6"
-            >
-              {/* Icon */}
-              <div className="hidden lg:flex items-start justify-center pt-1">
-                <Image
-                  src={item.icon}
-                  alt=""
-                  width={26}
-                  height={26}
-                  className="object-contain"
-                />
-              </div>
+          {items.map((item, index) => (
+            <div className={index % 2 === 0 ? "bg-[#f5f5f5] py-4" : "py-4"}>
+              <div className="container">
+                <div
+                  key={item.id}
+                  className="grid gap-4 border-b border-[#e0d6c6] pb-6 last:border-b-0 lg:grid-cols-[40px_minmax(0,1.7fr)_minmax(0,0.9fr)] lg:gap-6"
+                >
+                  <div className="hidden lg:flex items-start justify-center pt-1">
+                    <Image
+                      src={item.icon}
+                      alt=""
+                      width={26}
+                      height={26}
+                      className="object-contain"
+                    />
+                  </div>
 
-              {/* Text */}
-              <div className="lg:col-span-1">
-                {/* mobile icon */}
-                <div className="mb-2 flex items-center gap-2 lg:hidden">
-                  <Image
-                    src={item.icon}
-                    alt=""
-                    width={22}
-                    height={22}
-                    className="object-contain"
-                  />
-                  <span className="text-[11px] uppercase tracking-[0.14em] text-[#555]">
-                    {item.title}
-                  </span>
+                  {/* Text */}
+                  <div className="lg:col-span-1">
+                    {/* mobile icon */}
+                    <div className="mb-2 flex items-center gap-2 lg:hidden">
+                      <Image
+                        src={item.icon}
+                        alt=""
+                        width={22}
+                        height={22}
+                        className="object-contain"
+                      />
+                      <span className="text-[11px] uppercase tracking-[0.14em] text-[#555]">
+                        {item.title}
+                      </span>
+                    </div>
+
+                    {/* desktop title */}
+                    <h3 className="hidden lg:block text-[13px] sm:text-[14px] uppercase tracking-[0.14em] text-[#333] mb-2">
+                      {item.title}
+                    </h3>
+
+                    {/* text paragraphs */}
+                    <div className="text-[13px] leading-relaxed text-[#444] space-y-1">
+                      {item.text.map((line) => (
+                        <p key={line}>{line}</p>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="relative mt-2 h-[150px] sm:h-[170px] lg:h-[185px]">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      className="object-contain object-right"
+                    />
+                  </div>
                 </div>
-
-                {/* desktop title */}
-                <h3 className="hidden lg:block text-[13px] sm:text-[14px] uppercase tracking-[0.14em] text-[#333] mb-2">
-                  {item.title}
-                </h3>
-
-                {/* text paragraphs */}
-                <div className="text-[13px] leading-relaxed text-[#444] space-y-1">
-                  {item.text.map((line) => (
-                    <p key={line}>{line}</p>
-                  ))}
-                </div>
-              </div>
-
-              <div className="relative mt-2 h-[150px] sm:h-[170px] lg:h-[185px]">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-contain object-right"
-                />
               </div>
             </div>
           ))}

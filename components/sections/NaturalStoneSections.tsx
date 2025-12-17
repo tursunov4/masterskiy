@@ -87,74 +87,81 @@ const CategoryColumn = ({ groups }: { groups: CategoryGroup[] }) => {
 
 const NaturalStoneSections = () => {
   return (
-    <section className="bg-[#f5f0e7] py-14">
-      <div className="container mx-auto flex flex-col gap-16">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,1.3fr)] items-start">
-          <div>
-            <div className="flex items-start gap-6 mb-4">
-              <span className="text-4xl sm:text-5xl text-[#c79b60] font-light">
-                01
-              </span>
+    <section className=" py-14">
+      <div className=" flex flex-col">
+        <div className="py-5">
+          <div className="container">
+            <div className="grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,1.3fr)] items-start">
               <div>
-                <h2 className="text-[16px] sm:text-[18px] tracking-[0.15em] uppercase">
-                  НАТУРАЛЬНЫЙ КАМЕНЬ ДЛЯ ВНУТРЕННЕЙ ОТДЕЛКИ
-                </h2>
-                <p className="mt-2 text-[13px] sm:text-[14px] leading-relaxed max-w-xl">
-                  От изысканных мраморных полов до роскошных каменных столешниц
-                  — мы предлагаем комплексные решения для вашего интерьера.
-                  Единство материала в разных зонах создает особую атмосферу
-                  уюта и премиальности.
-                </p>
+                <div className="flex items-start gap-6 mb-4">
+                  <span className="text-4xl sm:text-5xl text-[#c79b60] font-light">
+                    01
+                  </span>
+                  <div>
+                    <h2 className="text-[16px] sm:text-[18px] tracking-[0.15em] uppercase">
+                      НАТУРАЛЬНЫЙ КАМЕНЬ ДЛЯ ВНУТРЕННЕЙ ОТДЕЛКИ
+                    </h2>
+                    <p className="mt-2 text-[13px] sm:text-[14px] leading-relaxed max-w-xl">
+                      От изысканных мраморных полов до роскошных каменных
+                      столешниц — мы предлагаем комплексные решения для вашего
+                      интерьера. Единство материала в разных зонах создает
+                      особую атмосферу уюта и премиальности.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="relative mt-4 h-[250px] sm:h-[300px] lg:h-[340px]">
+                  <Image
+                    src="/images/png/1.png" // o'zingdagi rasm
+                    alt="Интерьер с камнем"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+
+              {/* Right: categories */}
+              <div className="flex justify-center lg:justify-end">
+                <CategoryColumn groups={interiorGroups} />
               </div>
             </div>
-
-            <div className="relative mt-4 h-[250px] sm:h-[300px] lg:h-[340px]">
-              <Image
-                src="/images/png/1.png" // o'zingdagi rasm
-                alt="Интерьер с камнем"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </div>
-
-          {/* Right: categories */}
-          <div className="flex justify-center lg:justify-end">
-            <CategoryColumn groups={interiorGroups} />
           </div>
         </div>
-
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,2fr)] items-start">
-          {/* Left: categories */}
-          <div className="flex justify-center lg:justify-start">
-            <CategoryColumn groups={exteriorGroups} />
-          </div>
-
-          <div>
-            <div className="flex items-start gap-6 mb-4">
-              <span className="text-4xl sm:text-5xl text-[#c79b60] font-light">
-                02
-              </span>
-              <div>
-                <h2 className="text-[16px] sm:text-[18px] tracking-[0.15em] uppercase">
-                  НАТУРАЛЬНЫЙ КАМЕНЬ ДЛЯ ВНЕШНЕЙ ОТДЕЛКИ
-                </h2>
-                <p className="mt-2 text-[13px] sm:text-[14px] leading-relaxed max-w-xl">
-                  От элегантных фасадов до долговечных мощеных площадок —
-                  натуральный камень подчеркивает статус вашего дома. Каждый
-                  элемент экстерьера становится частью цельного архитектурного
-                  ансамбля, сохраняя безупречный вид на десятилетия.
-                </p>
+        <div className="bg-[#f5f5f5] py-5">
+          <div className="container">
+            <div className="grid gap-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,2fr)] items-start">
+              <div className="flex justify-center lg:justify-start">
+                <CategoryColumn groups={exteriorGroups} />
               </div>
-            </div>
 
-            <div className="relative mt-4 h-[250px] sm:h-[300px] lg:h-[340px]">
-              <Image
-                src="/images/png/2.png"
-                alt="Экстерьер с камнем"
-                fill
-                className="object-cover"
-              />
+              <div>
+                <div className="flex items-start gap-6 mb-4">
+                  <span className="text-4xl sm:text-5xl text-[#c79b60] font-light">
+                    02
+                  </span>
+                  <div>
+                    <h2 className="text-[16px] sm:text-[18px] tracking-[0.15em] uppercase">
+                      НАТУРАЛЬНЫЙ КАМЕНЬ ДЛЯ ВНЕШНЕЙ ОТДЕЛКИ
+                    </h2>
+                    <p className="mt-2 text-[13px] sm:text-[14px] leading-relaxed max-w-xl">
+                      От элегантных фасадов до долговечных мощеных площадок —
+                      натуральный камень подчеркивает статус вашего дома. Каждый
+                      элемент экстерьера становится частью цельного
+                      архитектурного ансамбля, сохраняя безупречный вид на
+                      десятилетия.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="relative mt-4 h-[250px] sm:h-[300px] lg:h-[340px]">
+                  <Image
+                    src="/images/png/2.png"
+                    alt="Экстерьер с камнем"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>

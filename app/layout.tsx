@@ -74,9 +74,9 @@ export default function RootLayout({
         <Providers>
           <Header />
           {children}
-          <Footer />
           <ConsultModal />
           <ConsultToast />
+          <Footer />
         </Providers>
       </body>
     </html>

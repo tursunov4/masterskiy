@@ -79,7 +79,7 @@ const CategoriesStrip: React.FC<CategoriesStripProps> = ({ pathname }) => {
     isActivePath(pathname, href) ? "#f6f2ea" : "#111111";
 
   return (
-    <div className="bg-[#d9d9d5] hidden lg:block">
+    <div className="bg-[#f5f5f5] hidden lg:block">
       <div className="container">
         <div className="py-2.5 flex items-stretch gap-2.5">
           <ul className="flex-1 flex items-center gap-2 overflow-x-auto">

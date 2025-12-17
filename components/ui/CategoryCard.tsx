@@ -53,7 +53,6 @@ export default function CategoryCard({
           className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
         />
 
-        {/* vignette hover overlay */}
         <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
           <div className="h-full w-full bg-[radial-gradient(circle,rgba(0,0,0,0)_35%,rgba(0,0,0,0.45)_75%,rgba(0,0,0,0.65)_100%)]" />
         </div>
