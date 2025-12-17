@@ -62,7 +62,6 @@ type Product = {
 const API_BASE =
   process.env.NEXT_PUBLIC_API_BASE || "https://admin.marble-moscow.ru";
 
-/** API color.name -> UI mainColor */
 function mapApiColorToMainColor(apiColor?: string | null): MainColor {
   const c = (apiColor ?? "").toLowerCase();
 
@@ -77,7 +76,6 @@ function mapApiColorToMainColor(apiColor?: string | null): MainColor {
   return "other";
 }
 
-/** API style -> UI StyleType[] (bizning filter setga moslab) */
 function mapApiStyleToStyles(apiStyle?: string | null): StyleType[] {
   const s = (apiStyle ?? "").toLowerCase();
 
@@ -85,10 +83,8 @@ function mapApiStyleToStyles(apiStyle?: string | null): StyleType[] {
   if (s === "classic") return ["classic"];
   if (s === "luxury") return ["luxury"];
 
-  // backendda "vintage" kelgani uchun: luxuryga bog‘lab qo‘ydim (xohlasangiz boshqa mapping qilamiz)
   if (s === "vintage") return ["luxury"];
 
-  // noma’lum style: filterlarga kirmaydi, lekin umumiy listda chiqaveradi
   return [];
 }
 

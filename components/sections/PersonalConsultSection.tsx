@@ -10,7 +10,6 @@ import {
 
 const PersonalConsultSection: React.FC = () => {
   const dispatch = useAppDispatch();
-
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
 
@@ -22,6 +21,8 @@ const PersonalConsultSection: React.FC = () => {
     dispatch(
       submitConsult({ name: name.trim(), phone: phone.trim(), message: "" })
     );
+    setName("");
+    setPhone("");
   };
 
   return (
@@ -60,7 +61,7 @@ const PersonalConsultSection: React.FC = () => {
             />
             <button
               type="submit"
-              className="h-10 w-full rounded-md bg-[#c79b60] px-4 text-xs md:w-auto md:px-6 md:text-sm uppercase tracking-[0.12em] text-[#2c2420] hover:bg-[#d8b97a] transition"
+              className="h-10 w-full rounded-md bg-[#c79b60] px-1  md:w-auto md:px-1 md:text-[12px] uppercase tracking-[0.12em] text-[#2c2420] hover:bg-[#d8b97a] transition"
             >
               ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ
             </button>

@@ -6,7 +6,6 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-
   --muted: #e0ddd7;
   --accent: #c79b60;
   --control: #2f2f2f;
@@ -16,10 +15,20 @@
   scroll-behavior: smooth;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-palatino, Arial, Helvetica, sans-serif);
+
+  /* Next/font localFont variable shu yerda ishlaydi */
+  font-family: var(--font-palatino), Arial, Helvetica, sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* ======================
@@ -37,6 +46,9 @@ body {
   }
 }
 
+/* ======================
+   HERO SWIPER
+====================== */
 .hero-swiper {
   position: relative;
   width: 100%;

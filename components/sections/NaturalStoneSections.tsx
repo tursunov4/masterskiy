@@ -90,7 +90,6 @@ const NaturalStoneSections = () => {
     <section className="bg-[#f5f0e7] py-14">
       <div className="container mx-auto flex flex-col gap-16">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,1.3fr)] items-start">
-          {/* Left: text + image */}
           <div>
             <div className="flex items-start gap-6 mb-4">
               <span className="text-4xl sm:text-5xl text-[#c79b60] font-light">
@@ -109,7 +108,7 @@ const NaturalStoneSections = () => {
               </div>
             </div>
 
-            <div className="relative mt-4 h-[230px] sm:h-[260px] lg:h-[290px]">
+            <div className="relative mt-4 h-[250px] sm:h-[300px] lg:h-[340px]">
               <Image
                 src="/images/png/1.png" // o'zingdagi rasm
                 alt="Интерьер с камнем"
@@ -131,7 +130,6 @@ const NaturalStoneSections = () => {
             <CategoryColumn groups={exteriorGroups} />
           </div>
 
-          {/* Right: text + image */}
           <div>
             <div className="flex items-start gap-6 mb-4">
               <span className="text-4xl sm:text-5xl text-[#c79b60] font-light">
@@ -150,7 +148,7 @@ const NaturalStoneSections = () => {
               </div>
             </div>
 
-            <div className="relative mt-4 h-[230px] sm:h-[260px] lg:h-[290px]">
+            <div className="relative mt-4 h-[250px] sm:h-[300px] lg:h-[340px]">
               <Image
                 src="/images/png/2.png"
                 alt="Экстерьер с камнем"

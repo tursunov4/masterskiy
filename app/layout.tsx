@@ -9,8 +9,6 @@ import ConsultModal from "@/components/modals/ConsultModal";
 import ConsultToast from "@/components/ui/ConsultToast";
 
 import { getSeo } from "@/lib/seo";
-
-/* ================= FONT ================= */
 const palatino = localFont({
   src: [
     {
@@ -39,7 +37,6 @@ const palatino = localFont({
 
 const SITE_URL = "https://marble-moscow.ru";
 
-/* ================= SEO (HOME from API) ================= */
 export async function generateMetadata(): Promise<Metadata> {
   const seo = await getSeo();
 
@@ -50,20 +47,11 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     metadataBase: new URL(SITE_URL),
-
     title,
     description,
     keywords,
-
-    alternates: {
-      canonical: SITE_URL,
-    },
-
-    robots: {
-      index: true,
-      follow: true,
-    },
-
+    alternates: { canonical: SITE_URL },
+    robots: { index: true, follow: true },
     openGraph: {
       type: "website",
       url: SITE_URL,
@@ -71,16 +59,10 @@ export async function generateMetadata(): Promise<Metadata> {
       description,
       siteName: "Marble Moscow",
     },
-
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-    },
+    twitter: { card: "summary_large_image", title, description },
   };
 }
 
-/* ================= LAYOUT ================= */
 export default function RootLayout({
   children,
 }: {
