@@ -3,9 +3,6 @@
 @import "swiper/css/navigation";
 @import "swiper/css/pagination";
 
-/* ======================
-   COLOR TOKENS
-====================== */
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -15,20 +12,6 @@
   --control: #2f2f2f;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-
-    --muted: #3a3a3a;
-    --accent: #c79b60; /* bir xil qoladi */
-    --control: #e5e5e5;
-  }
-}
-
-/* ======================
-   BASE
-====================== */
 * {
   scroll-behavior: smooth;
 }
@@ -54,9 +37,6 @@ body {
   }
 }
 
-/* ======================
-   HERO SWIPER
-====================== */
 .hero-swiper {
   position: relative;
   width: 100%;
