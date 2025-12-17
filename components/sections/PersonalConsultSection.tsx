@@ -26,7 +26,7 @@ const PersonalConsultSection: React.FC = () => {
   };
 
   return (
-    <section className=" bg-[#dfdfdb] py-6">
+    <section className=" bg-[#d9d9d5] py-6">
       <div className="container mx-auto px-4">
         <form
           className="flex flex-col items-stretch gap-4 md:flex-row md:items-center md:justify-between"
