@@ -11,7 +11,6 @@ const PRODUCT_CATEGORY_SLUG = `katalog-izdelij`;
 const Footer = () => {
   const dispatch = useAppDispatch();
   const contact = useAppSelector((s) => s.contact.data);
-
   useEffect(() => {
     dispatch(fetchContactInfo());
   }, [dispatch]);
@@ -19,8 +18,6 @@ const Footer = () => {
     "relative inline-flex items-center pb-[2px] " +
     "after:absolute after:left-0 after:-bottom-[1px] after:h-[1px] after:bg-[#d7b06a] after:transition-all after:w-0 " +
     "hover:text-[#d7b06a] hover:after:w-full";
-
-  // fallback (API xato bo‘lsa ham footer bo‘sh qolmasin)
   const stoneFallback = [
     { id: 1, name: "Мрамор", slug: "marble" },
     { id: 2, name: "Гранит", slug: "granite" },
@@ -86,14 +83,12 @@ const Footer = () => {
 
   return (
     <footer className=" bg-[#120f0f] text-[#f5eee5]">
-      <section className="relative bg-[url('/images/footer-bg.jpg')] bg-cover bg-center">
-        {/* qorong'i overlay */}
+      <section className="relative bg-[url('/images/png/footer.png')]  bg-cover bg-center">
         <div className="absolute inset-0 bg-black/60" />
 
         <div className="container">
           <div className="relative mx-auto px-4 py-14 md:py-16">
             <div className="flex flex-col gap-12 lg:flex-row lg:gap-20">
-              {/* ABOUT */}
               <div className="min-w-[180px]">
                 <h3 className="mb-4 text-lg font-semibold tracking-[0.18em] uppercase">
                   О НАС

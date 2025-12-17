@@ -120,7 +120,7 @@ export default function FeaturedProducts() {
     });
   }, [apiItems]);
 
-  const allLink = useMemo(() => resolveAllLink(apiItems), [apiItems]);
+  // const allLink = useMemo(() => resolveAllLink(apiItems), [apiItems]);
 
   return (
     <section className="py-12">
@@ -170,7 +170,7 @@ export default function FeaturedProducts() {
         {/* BUTTON */}
         <div className="mt-10 flex justify-end">
           <Link
-            href={allLink}
+            href={"/our-projects"}
             className="group inline-flex items-center gap-2 border border-[#111111] px-5 py-2.5 text-[13px] md:text-[14px]
                        tracking-[0.08em] uppercase
                        hover:bg-[#111111] hover:text-white transition-colors duration-300
