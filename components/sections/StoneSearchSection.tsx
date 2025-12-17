@@ -1,7 +1,10 @@
-import Image from "next/image";
+"use client";
+import { useAppDispatch } from "@/store/hooks";
+import { openConsult } from "@/store/slices/consult.slice";
 import Link from "next/link";
 
 const StoneSearchSection = () => {
+  const dispatch = useAppDispatch();
   return (
     <section
       className="     
@@ -30,13 +33,13 @@ const StoneSearchSection = () => {
               </p>
 
               <div className="mt-4">
-                <Link
-                  href="/contact"
+                <button
+                  onClick={() => dispatch(openConsult())}
                   className="inline-flex items-center gap-2 bg-[#c79b60] px-3 py-1 text-[16px] sm:text-sm uppercase tracking-[0.12em] text-[#2c2420] hover:bg-[#d9b976] transition"
                 >
                   Расскажите, что ищете
                   <span className="text-base">»</span>
-                </Link>
+                </button>
               </div>
             </div>
           </div>

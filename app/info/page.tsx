@@ -1,47 +1,13 @@
 // app/info/page.tsx
+import Breadcrumbs from "@/components/Breadcrumbs";
+import SectionHeader from "@/components/ui/SectionHeader";
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import InfoBlogSection from "@/components/sections/InfoBlogSection";
 
 export const metadata: Metadata = {
   title: "Информация и статьи",
 };
-
-type Article = {
-  id: number;
-  date: string;
-  readTime: string;
-  title: string;
-  subtitle: string;
-  image: string;
-};
-
-const articles: Article[] = [
-  {
-    id: 1,
-    date: "11.10.2025",
-    readTime: "2 минуты чтения",
-    title: "О НАС",
-    subtitle: "Краткая информация о наших мастерских",
-    image: "/images/articles/about.jpg",
-  },
-  {
-    id: 2,
-    date: "27.11.2025",
-    readTime: "8 минут чтения",
-    title: "СТОЛЫ ИЗ ЛАБРАДОРИТА",
-    subtitle: "Камень с магией северного сияния",
-    image: "/images/articles/labradorite-table.jpg",
-  },
-  {
-    id: 3,
-    date: "21.12.2025",
-    readTime: "5 минут чтения",
-    title: "ФАСАД КОТОРЫЙ ВДОХНОВЛЯЕТ",
-    subtitle: "Возможности крепления фасадов из камня",
-    image: "/images/articles/facade.jpg",
-  },
-];
 
 const faq = [
   {
@@ -89,19 +55,19 @@ const faq = [
 export default function InfoPage() {
   return (
     <main className="">
-      <div className="bg-[#f8f4ee]">
-        <p className="py-2 text-center text-xs tracking-[0.12em]">
-          <Link href="/" className="hover:underline">
-            Главная
-          </Link>{" "}
-          / <span>Информация и статьи</span>
-        </p>
-      </div>
+      <Breadcrumbs
+        items={[
+          { label: "Главная", href: "/" },
+          { label: "Информация и статьи" },
+        ]}
+      />
 
       <div className="container">
         <HeroSection />
-        <ArticlesSection />
-        <ShowMoreWithPagination />
+
+        {/* BLOG FROM API */}
+        <InfoBlogSection pageSize={9} />
+
         <FaqSection />
       </div>
     </main>
@@ -111,19 +77,14 @@ export default function InfoPage() {
 function HeroSection() {
   return (
     <>
-      <div className="flex flex-col items-center gap-2 py-4">
-        <div className="h-[2px] w-24 bg-[#c79b60]" />
-        <h1 className="text-lg sm:text-xl md:text-2xl tracking-[0.18em] uppercase">
-          Информация и статьи
-        </h1>
-      </div>
-      <div className="bg-[#c79b60] py-2 text-center text-xs sm:text-sm tracking-[0.15em] uppercase text-[#2c2420]">
-        УЗНАЙТЕ БОЛЬШЕ О НАС И НАШИХ РАБОТАХ
-      </div>
+      <SectionHeader
+        title="Информация и статьи"
+        subtitle=" УЗНАЙТЕ БОЛЬШЕ О НАС И НАШИХ РАБОТАХ"
+      />
 
       <section className="relative h-[260px] sm:h-[320px] md:h-[360px]">
         <Image
-          src="/images/png/choose.png" // fon rasmi
+          src="/images/png/choose.png"
           alt="Информация и статьи"
           fill
           className="object-cover"
@@ -134,82 +95,6 @@ function HeroSection() {
         </div>
       </section>
     </>
-  );
-}
-
-function ArticlesSection() {
-  return (
-    <section className="px-4 pb-10 pt-8">
-      <div className="grid gap-6 md:grid-cols-3">
-        {articles.map((article) => (
-          <article
-            key={article.id}
-            className="border border-black/20 bg-white flex flex-col"
-          >
-            <div className="relative h-[170px] sm:h-[190px]">
-              <Image
-                src={article.image}
-                alt={article.title}
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="flex justify-between bg-white text-[11px]">
-              <span className="px-2 py-1">{article.date}</span>
-              <span className="px-2 py-1">{article.readTime}</span>
-            </div>
-            <div className="px-2 pb-3 pt-1 text-[12px] leading-snug">
-              <Link href="#" className="block font-semibold hover:underline">
-                {article.title}
-              </Link>
-              <p className="mt-1 text-[11px]">{article.subtitle}</p>
-            </div>
-          </article>
-        ))}
-
-        {/* maketdagi bo'sh kartochkalar */}
-        {Array.from({ length: 6 }).map((_, i) => (
-          <div
-            key={`empty-${i}`}
-            className="hidden h-[220px] border border-dashed border-black/20 md:block"
-          />
-        ))}
-      </div>
-    </section>
-  );
-}
-
-/* ---------- SHOW MORE + PAGINATION ---------- */
-
-function ShowMoreWithPagination() {
-  return (
-    <section className="px-4 pb-8">
-      <div className="bg-[#c79b60] py-2 text-center text-[13px] uppercase tracking-[0.14em] text-[#2c2420]">
-        Показать еще
-      </div>
-
-      <div className="mt-4 flex items-center justify-center gap-2">
-        <button className="h-8 w-8 border border-black/40 bg-[#c79b60] text-sm">
-          ←
-        </button>
-        <button className="h-8 w-8 border border-black/40 bg-[#666] text-white text-sm">
-          1
-        </button>
-        <button className="h-8 w-8 border border-black/40 bg-white text-sm">
-          2
-        </button>
-        <button className="h-8 w-8 border border-black/40 bg-white text-sm">
-          3
-        </button>
-        <span className="px-2 text-sm">...</span>
-        <button className="h-8 w-10 border border-black/40 bg-white text-sm">
-          10
-        </button>
-        <button className="h-8 w-8 border border-black/40 bg-[#c79b60] text-sm">
-          →
-        </button>
-      </div>
-    </section>
   );
 }
 

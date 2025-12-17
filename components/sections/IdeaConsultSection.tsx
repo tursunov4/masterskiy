@@ -1,46 +1,47 @@
-import Image from "next/image";
+"use client";
+import { useAppDispatch } from "@/store/hooks";
+import { openConsult } from "@/store/slices/consult.slice";
 import Link from "next/link";
 
-export default function IdeaConsultSection() {
+const IdeaConsultSection = () => {
+  const dispatch = useAppDispatch();
   return (
-    <section className="relative h-[240px] sm:h-[300px] lg:h-[300px] w-full overflow-hidden ">
-      {/* BACKGROUND IMAGE */}
-      <Image
-        src="/images/png/catalogproductbanner.png" // 🔥 rasmni o'zing almashtirasan
-        alt="Интерьер"
-        fill
-        priority
-        className="object-cover"
-      />
+    <section
+      className="     
+        py-[40px]
+        bg-[url('/images/png/catalogproductbanner.png')]
+        bg-no-repeat
+        bg-cover
+        bg-right
+      "
+    >
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col items-center gap-8 lg:flex-row lg:items-stretch">
+          <div className="w-full lg:w-1/2 flex justify-center">
+            <div className="w-full max-w-md  bg-[#f5f3ee] px-6 py-5 text-sm text-[#333] leading-relaxed">
+              <h3 className="mb-2 text-base text-center sm:text-lg">
+                Появились идеи?
+              </h3>
+              <p>
+                Превратим их в готовый проект. Получите бесплатную консультацию
+                по телефону и ответы на все вопросы по ассортименту.
+              </p>
 
-      <div className="absolute inset-0 bg-black/10" />
-
-      {/* CENTER CARD */}
-      <div className="absolute container flex items-center justify-center px-4">
-        <div className="bg-[#e5e2d6] px-6 py-5 sm:px-8 sm:py-4 max-w-[360px] shadow-md">
-          {/* TITLE */}
-          <h3 className="text-center text-lg sm:text-xl mb-3 font-[500]">
-            Появились идеи?
-          </h3>
-
-          {/* DESCRIPTION */}
-          <p className="text-sm text-[#2c2c2c] leading-relaxed mb-4">
-            Превратим их в готовый проект. Получите бесплатную консультацию по
-            телефону и ответы на все вопросы по ассортименту.
-          </p>
-
-          {/* BUTTON */}
-          <div className="flex justify-center">
-            <Link
-              href="/consult"
-              className="inline-flex items-center gap-2 bg-[#c79b60] hover:bg-[#d8b97c] px-4 py-2 text-sm uppercase tracking-[0.12em] text-[#2c2420] transition"
-            >
-              Да, хочу консультацию
-              <span className="text-base">»</span>
-            </Link>
+              <div className="mt-5 flex justify-center">
+                <button
+                  onClick={() => dispatch(openConsult())}
+                  className="inline-flex items-center gap-2 bg-[#c79b60] px-3 py-1 text-[16px] sm:text-sm uppercase tracking-[0.12em] text-[#2c2420] hover:bg-[#d9b976] transition"
+                >
+                  Да, хочу консультацию
+                  <span className="text-base">»</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default IdeaConsultSection;

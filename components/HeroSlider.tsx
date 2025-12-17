@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
+import { BannerImage, getBanners } from "@/services/banners";
 
-const slides = [
+// ✅ sizdagi eski fallback slides (dizayn logikasi shunga tayangan) :contentReference[oaicite:1]{index=1}
+const fallbackSlides = [
   {
     id: 1,
     image: "/images/heroslidebg.jpg",
@@ -54,24 +56,73 @@ const slides = [
   },
 ];
 
+type SlideUi = {
+  id: number;
+  image: string;
+  title: string;
+  bullets: string[];
+  buttonText: string;
+  alt?: string;
+};
+
+const DEFAULT_BULLETS = [
+  "Индивидуальные дизайн-проекты",
+  "Эксклюзивные коллекции камня",
+  "Полный цикл реализации",
+];
+
 const HeroSlider = () => {
   const [swiperInstance, setSwiperInstance] = useState<any>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const handlePrev = () => {
-    if (!swiperInstance) return;
-    swiperInstance.slidePrev();
-  };
+  const [banners, setBanners] = useState<BannerImage[]>([]);
+  const [loading, setLoading] = useState(false);
 
-  const handleNext = () => {
-    if (!swiperInstance) return;
-    swiperInstance.slideNext();
-  };
+  useEffect(() => {
+    let cancelled = false;
 
-  const handleBulletClick = (index: number) => {
-    if (!swiperInstance) return;
-    swiperInstance.slideToLoop(index);
-  };
+    (async () => {
+      try {
+        setLoading(true);
+        const data = await getBanners(1);
+
+        if (cancelled) return;
+
+        // order bo‘yicha sort (agar backend yuborsa)
+        const sorted = [...data.results].sort(
+          (a, b) => (a.order ?? 9999) - (b.order ?? 9999)
+        );
+        setBanners(sorted);
+      } catch {
+        // error bo‘lsa ham fallback ishlayveradi
+        if (!cancelled) setBanners([]);
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const slides: SlideUi[] = useMemo(() => {
+    if (!banners.length) return fallbackSlides;
+
+    return banners.map((b) => ({
+      id: b.id,
+      image: b.image, // full url keladi
+      title: b.title || "МАСТЕРСКАЯ МРАМОРНЫХ ИНТЕРЬЕРОВ",
+      bullets: DEFAULT_BULLETS, // API’da bullets yo‘q -> vaqtincha default
+      buttonText: "ПОДРОБНЕЕ",
+      alt: b.alt_text ?? b.title ?? "Banner",
+    }));
+  }, [banners]);
+
+  const handlePrev = () => swiperInstance?.slidePrev();
+  const handleNext = () => swiperInstance?.slideNext();
+  const handleBulletClick = (index: number) =>
+    swiperInstance?.slideToLoop(index);
 
   return (
     <section className="py-6 md:py-10">
@@ -89,7 +140,7 @@ const HeroSlider = () => {
                 <div className="relative mx-auto h-[230px] sm:h-[280px] lg:h-[330px] xl:h-[360px] md:max-w-[calc(100%-70px)] overflow-hidden bg-black">
                   <Image
                     src={slide.image}
-                    alt={slide.title}
+                    alt={slide.alt ?? slide.title}
                     fill
                     priority
                     className="object-cover"
@@ -98,23 +149,15 @@ const HeroSlider = () => {
                   <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-black/75" />
 
                   <div className="absolute inset-0 flex items-center">
-                    <div className="flex w-full justify-center sm:justify-end px-4 sm:px-8 lg:px-10">
+                    <div className="flex  w-full justify-center sm:justify-end px-4 sm:px-8 lg:px-10">
                       <div className="max-w-xl text-left text-[#f6f0e8]">
                         <h2 className="mb-4 font-serif text-xl sm:text-2xl lg:text-[32px] leading-tight tracking-[0.16em] uppercase">
                           {slide.title}
                         </h2>
-
-                        <ul className="mb-6 space-y-1.5 text-xs sm:text-sm md:text-base font-serif">
-                          {slide.bullets.map((item) => (
-                            <li
-                              key={item}
-                              className="flex items-baseline gap-2 text-[#f6f0e8]"
-                            >
-                              <span className="text-base leading-none">✓</span>
-                              <span>{item}</span>
-                            </li>
-                          ))}
-                        </ul>
+                        <div
+                          className="mb-6 text-xs sm:text-sm md:text-base font-serif"
+                          dangerouslySetInnerHTML={{ __html: slide.alt || "" }}
+                        ></div>
 
                         <Link href="/catalog-stone">
                           <button className="inline-flex px-8 py-3 bg-[#c8a36a] text-xs sm:text-sm md:text-base font-semibold tracking-[0.14em] uppercase text-[#2b2523] hover:bg-[#d7b77d] transition-colors">
@@ -152,6 +195,7 @@ const HeroSlider = () => {
             </svg>
           </button>
 
+          {/* Next button */}
           <button
             type="button"
             onClick={handleNext}
@@ -174,6 +218,7 @@ const HeroSlider = () => {
             </svg>
           </button>
 
+          {/* Bullets */}
           <div className="mt-4 flex justify-center">
             <div className="inline-flex items-center gap-2">
               {slides.map((_, index) => {
@@ -197,6 +242,13 @@ const HeroSlider = () => {
               })}
             </div>
           </div>
+
+          {/* xohlasangiz loadingni ko‘rsatish */}
+          {loading && (
+            <div className="mt-2 text-center text-xs text-black/50">
+              Загрузка баннеров…
+            </div>
+          )}
         </div>
       </div>
     </section>

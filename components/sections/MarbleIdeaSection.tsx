@@ -1,18 +1,20 @@
+"use client";
+import { useAppDispatch } from "@/store/hooks";
+import { openConsult } from "@/store/slices/consult.slice";
 import Image from "next/image";
-import Link from "next/link";
 
 const MarbleIdeaSection = () => {
+  const dispatch = useAppDispatch();
   return (
     <section className="relative h-[240px] sm:h-[280px] lg:h-[320px] w-full overflow-hidden ">
       <Image
-        src="/images/png/stoneitembanner.png" // 🔁 o'zingdagi fon rasm bilan almashtir
+        src="/images/png/stoneitembanner.png"
         alt="Интерьер из мрамора"
         width={1000}
         height={400}
         className="object-cover w-full h-full"
       />
 
-      {/* Eng yengil overlay, xohlasang olib tashlashing mumkin */}
       <div className="absolute inset-0 bg-black/10" />
 
       <div className="container  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -28,13 +30,13 @@ const MarbleIdeaSection = () => {
             </p>
 
             <div className="flex justify-center">
-              <Link
-                href="/consult"
+              <button
+                onClick={() => dispatch(openConsult())}
                 className="inline-flex items-center gap-2 bg-[#c79b60] hover:bg-[#d8b97c] px-4 py-2 text-xs sm:text-sm uppercase tracking-[0.12em] text-[#2c2420] transition"
               >
                 Да, хочу консультацию
                 <span className="text-base">»</span>
-              </Link>
+              </button>
             </div>
           </div>
         </div>

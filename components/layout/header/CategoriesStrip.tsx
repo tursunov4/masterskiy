@@ -2,13 +2,57 @@
 
 import Link from "next/link";
 import { SquareDashedBottomCode } from "lucide-react";
-import { CATEGORIES, isActivePath } from "./navConfig";
+import { useEffect, useMemo, useState } from "react";
+import { CATEGORIES as STATIC_CATEGORIES, isActivePath } from "./navConfig";
+import { getSubcategories, type Subcategory } from "@/services/catalog";
 
 type CategoriesStripProps = {
   pathname: string;
 };
 
+const PRODUCT_CATEGORY_SLUG = `katalog-izdelij`;
+
+type CategoryLink = {
+  name: string;
+  href: string;
+};
+
 const CategoriesStrip: React.FC<CategoriesStripProps> = ({ pathname }) => {
+  const [productSubs, setProductSubs] = useState<Subcategory[]>([]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    getSubcategories(PRODUCT_CATEGORY_SLUG)
+      .then((data) => {
+        if (!cancelled) setProductSubs(Array.isArray(data) ? data : []);
+      })
+      .catch(() => {
+        if (!cancelled) setProductSubs([]);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const categories: CategoryLink[] = useMemo(() => {
+    const catalogProduct = STATIC_CATEGORIES.find(
+      (c) => c.href === "/catalog-product"
+    );
+
+    const subLinks: CategoryLink[] = productSubs.map((s) => ({
+      name: s.name,
+      href: `/catalog-product/${s.slug}`,
+    }));
+
+    const result: CategoryLink[] = [];
+    if (catalogProduct) result.push(catalogProduct);
+    result.push(...subLinks);
+
+    return result;
+  }, [productSubs]);
+
   const catClass = (href: string) => {
     const active = isActivePath(pathname, href);
     return [
@@ -27,7 +71,7 @@ const CategoriesStrip: React.FC<CategoriesStripProps> = ({ pathname }) => {
       "flex h-7 w-7 items-center justify-center rounded-full",
       active
         ? "bg-[#111111]"
-        : "bg-[#c79b60] group-hover:bg-[#111111] transition-colors",
+        : "bg-[#d6aa6d] group-hover:bg-[#111111] transition-colors",
     ].join(" ");
   };
 
@@ -35,11 +79,11 @@ const CategoriesStrip: React.FC<CategoriesStripProps> = ({ pathname }) => {
     isActivePath(pathname, href) ? "#f6f2ea" : "#111111";
 
   return (
-    <div className="bg-[#f3f0ea] hidden lg:block">
+    <div className="bg-[#d9d9d5] hidden lg:block">
       <div className="container">
         <div className="py-2.5 flex items-stretch gap-2.5">
           <ul className="flex-1 flex items-center gap-2 overflow-x-auto">
-            {CATEGORIES.map((cat) => (
+            {categories.map((cat) => (
               <li key={cat.name} className="group">
                 <Link href={cat.href} className={catClass(cat.href)}>
                   <span className={circleClass(cat.href)}>

@@ -1,15 +1,88 @@
 "use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { Mail, Phone, MapPin } from "lucide-react";
-
+import { useEffect, useState } from "react";
+import { getSubcategories, type Subcategory } from "@/services/catalog";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { fetchContactInfo } from "@/store/slices/contactSlice";
+const STONE_CATEGORY_SLUG = "katalog-kamnya";
+const PRODUCT_CATEGORY_SLUG = `katalog-izdelij`;
 const Footer = () => {
-  // Top barga o‘xshash hover-underline klassi
+  const dispatch = useAppDispatch();
+  const contact = useAppSelector((s) => s.contact.data);
+
+  useEffect(() => {
+    dispatch(fetchContactInfo());
+  }, [dispatch]);
   const footerLinkClass =
     "relative inline-flex items-center pb-[2px] " +
     "after:absolute after:left-0 after:-bottom-[1px] after:h-[1px] after:bg-[#d7b06a] after:transition-all after:w-0 " +
     "hover:text-[#d7b06a] hover:after:w-full";
+
+  // fallback (API xato bo‘lsa ham footer bo‘sh qolmasin)
+  const stoneFallback = [
+    { id: 1, name: "Мрамор", slug: "marble" },
+    { id: 2, name: "Гранит", slug: "granite" },
+    { id: 3, name: "Травертин", slug: "travertine" },
+    { id: 4, name: "Оникс", slug: "onyx" },
+    { id: 5, name: "Кварцит", slug: "quartzite" },
+  ];
+
+  const productFallback = [
+    { id: 1, name: "Полы", slug: "floors" },
+    { id: 2, name: "Стены", slug: "walls" },
+    { id: 3, name: "Подоконники", slug: "windowsills" },
+    { id: 4, name: "Столешницы", slug: "countertops" },
+    { id: 5, name: "Лестницы", slug: "stairs" },
+    { id: 6, name: "Камины", slug: "fireplaces" },
+  ];
+
+  const [stoneLinks, setStoneLinks] =
+    useState<Array<{ id: number; name: string; slug: string }>>(stoneFallback);
+
+  const [productLinks, setProductLinks] =
+    useState<Array<{ id: number; name: string; slug: string }>>(
+      productFallback
+    );
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function load() {
+      try {
+        const [stone, product] = await Promise.all([
+          getSubcategories(STONE_CATEGORY_SLUG),
+          getSubcategories(PRODUCT_CATEGORY_SLUG),
+        ]);
+
+        if (cancelled) return;
+
+        setStoneLinks(
+          (stone ?? []).map((s: Subcategory) => ({
+            id: s.id,
+            name: s.name,
+            slug: s.slug,
+          }))
+        );
+
+        setProductLinks(
+          (product ?? []).map((s: Subcategory) => ({
+            id: s.id,
+            name: s.name,
+            slug: s.slug,
+          }))
+        );
+      } catch {
+        // fallback qoladi
+      }
+    }
+
+    load();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   return (
     <footer className=" bg-[#120f0f] text-[#f5eee5]">
@@ -28,75 +101,61 @@ const Footer = () => {
 
                 <ul className="space-y-2 text-sm md:text-base">
                   {[
-                    "Вопрос-ответ",
-                    "Доставка",
-                    "Полезная информация",
-                    "Контакты",
+                    { name: "Вопрос-ответ", href: "/our-projects#faq" },
+                    { name: "Доставка ", href: "/#" },
+                    {
+                      name: "Полезная информация",
+                      href: "/poleznaya-informatsiya",
+                    },
+                    { name: "Контакты", href: "/#" },
                   ].map((item, idx) => (
                     <li key={idx}>
-                      <Link href="/" className="group flex items-center gap-1">
-                        <span className={footerLinkClass}>{item}</span>
+                      <Link
+                        href={item.href}
+                        className="group flex items-center gap-1"
+                      >
+                        <span className={footerLinkClass}>{item.name}</span>
                       </Link>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              {/* KATALOG KAMNYA */}
+              {/* KATALOG KAMNYA (getSubcategories(3)) */}
               <div className="min-w-[180px]">
                 <h3 className="mb-4 text-lg font-semibold tracking-[0.18em] uppercase">
                   КАТАЛОГ КАМНЯ
                 </h3>
 
                 <ul className="space-y-2 text-sm md:text-base">
-                  {[
-                    "Мрамор",
-                    "Гранит",
-                    "Травертин",
-                    "Оникс",
-                    "Кварцит",
-                    "Лабрадорит",
-                    "Эксклюзивные камни",
-                  ].map((item, idx) => (
-                    <li key={idx}>
-                      <button
-                        type="button"
-                        className={`${footerLinkClass} cursor-pointer bg-transparent border-none outline-none`}
+                  {stoneLinks.map((item) => (
+                    <li key={item.id}>
+                      <Link
+                        href={`/catalog-stone/${item.slug}`}
+                        className={`${footerLinkClass}`}
                       >
-                        {item}
-                      </button>
+                        {item.name}
+                      </Link>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              {/* KATALOG IZDELIY */}
+              {/* KATALOG IZDELIY (getSubcategories(2)) */}
               <div className="min-w-[200px]">
                 <h3 className="mb-4 text-lg font-semibold tracking-[0.18em] uppercase">
                   КАТАЛОГ ИЗДЕЛИЙ
                 </h3>
 
                 <ul className="space-y-2 text-sm md:text-base">
-                  {[
-                    "Полы",
-                    "Стены",
-                    "Подоконники",
-                    "Столешницы",
-                    "Лестницы",
-                    "Камины",
-                    "Ванны и SPA",
-                    "Бассейны",
-                    "Хаммамы",
-                    "Мозаика",
-                    "Внешняя отделка",
-                  ].map((item, idx) => (
-                    <li key={idx}>
-                      <button
-                        type="button"
-                        className={`${footerLinkClass} cursor-pointer bg-transparent border-none outline-none`}
+                  {productLinks.map((item) => (
+                    <li key={item.id}>
+                      <Link
+                        href={`/catalog-product/${item.slug}`}
+                        className={`${footerLinkClass}`}
                       >
-                        {item}
-                      </button>
+                        {item.name}
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -119,34 +178,38 @@ const Footer = () => {
 
                 {/* COMPANY INFO */}
                 <div className="text-sm md:text-base space-y-2 text-left lg:text-right text-[#f5eee5]">
-                  <p className="opacity-90">ИП Павлов Фёдор Валентинович</p>
-                  <p className="opacity-90">ИНН: 332913252520</p>
+                  <p className="opacity-90">{contact?.author_name ?? "—"}</p>
+                  <p className="opacity-90">ИНН: {contact?.inn ?? "—"}</p>
 
                   <p className="flex items-start lg:items-start justify-start lg:justify-end gap-2 opacity-90">
                     <MapPin className="w-4 h-4 mt-[3px] text-[#d7b06a]" />
                     <span>
-                      Владимирская обл., с. Новое, ул. Рабочая, стр. 1 <br />
-                      Пн–Сб, с 9:00 до 19:00
+                      {contact?.address ?? "—"} <br />
+                      {contact?.time_working ?? "—"}
                     </span>
                   </p>
 
                   <p className="mt-3">
                     <a
-                      href="tel:+79040395226"
+                      href={
+                        contact?.phone
+                          ? `tel:${contact.phone.replace(/\s|\(|\)|-/g, "")}`
+                          : "#"
+                      }
                       className={`${footerLinkClass} flex justify-start lg:justify-end items-center gap-2`}
                     >
                       <Phone className="w-4 h-4 text-[#d7b06a]" />
-                      +7 (904) 039 52 26
+                      {contact?.phone ?? "—"}
                     </a>
                   </p>
 
                   <p>
                     <a
-                      href="mailto:info@marble-moscow.ru"
+                      href={contact?.email ? `mailto:${contact.email}` : "#"}
                       className={`${footerLinkClass} flex justify-start lg:justify-end items-center gap-2`}
                     >
                       <Mail className="w-4 h-4 text-[#d7b06a]" />
-                      info@marble-moscow.ru
+                      {contact?.email ?? "—"}
                     </a>
                   </p>
                 </div>

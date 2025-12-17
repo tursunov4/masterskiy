@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/header/Header";
+import Providers from "./providers";
+import ConsultModal from "@/components/modals/ConsultModal";
+import ConsultToast from "@/components/ui/ConsultToast";
 const palatino = localFont({
   src: [
     {
@@ -42,9 +45,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${palatino.variable} antialiased`}>
-        <Header />
-        {children}
-        <Footer />
+        <Providers>
+          <Header />
+          {children}
+          <Footer />
+          <ConsultModal />
+          <ConsultToast />
+        </Providers>
       </body>
     </html>
   );

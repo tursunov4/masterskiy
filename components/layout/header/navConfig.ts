@@ -12,7 +12,7 @@ export type CategoryLink = {
 export const NAV_LINKS: NavLink[] = [
   { href: "/info", label: "О НАС" },
   { href: "/catalog-stone", label: "КАТАЛОГ КАМНЯ" },
-  { href: "/projects", label: "НАШИ ПРОЕКТЫ" },
+  { href: "/our-projects", label: "НАШИ ПРОЕКТЫ" },
   { href: "/contact", label: "КОНТАКТЫ" },
   { href: "/church-art", label: "ЦЕРКОВНОЕ ИСКУССТВО" },
 ];

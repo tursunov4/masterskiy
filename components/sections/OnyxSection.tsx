@@ -1,4 +1,10 @@
+"use client";
+
+import { useAppDispatch } from "@/store/hooks";
+import { openConsult } from "@/store/slices/consult.slice";
+
 const OnyxSection = () => {
+  const dispatch = useAppDispatch();
   return (
     <section
       className="
@@ -40,7 +46,10 @@ const OnyxSection = () => {
 
             {/* BUTTON CARD */}
             <div className="bg-[#e5dfd4] px-6 md:px-7 py-3 flex justify-center border border-[#111111] border-t-0">
-              <button className="bg-[#c79b60] px-7 md:px-8 py-2 text-[12px] md:text-[13px] uppercase tracking-[0.16em] text-[#231f20] hover:bg-[#d8b976] transition">
+              <button
+                onClick={() => dispatch(openConsult())}
+                className="bg-[#c79b60] px-7 md:px-8 py-2 text-[12px] md:text-[13px] uppercase tracking-[0.16em] text-[#231f20] hover:bg-[#d8b976] transition"
+              >
                 Вдохновиться примерами »
               </button>
             </div>

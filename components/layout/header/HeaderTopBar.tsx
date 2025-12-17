@@ -12,6 +12,7 @@ import {
   Phone,
 } from "lucide-react";
 import { NAV_LINKS, isActivePath } from "./navConfig";
+import { useAppSelector } from "@/store/hooks";
 
 type HeaderTopBarProps = {
   pathname: string;
@@ -22,6 +23,12 @@ const HeaderTopBar: React.FC<HeaderTopBarProps> = ({
   pathname,
   onOpenMobileMenu,
 }) => {
+  const contact = useAppSelector((s) => s.contact.data);
+
+  const phoneClean = contact?.phone
+    ? contact.phone.replace(/\s|\(|\)|-/g, "")
+    : "";
+
   const navLinkClass = (href: string) => {
     const active = isActivePath(pathname, href);
     return [
@@ -38,25 +45,21 @@ const HeaderTopBar: React.FC<HeaderTopBarProps> = ({
     <div className="bg-[#111111] text-[#f6f2ea]">
       <div className="container">
         <div className="py-2.5 flex items-stretch gap-4 md:gap-6">
-          <Link
-            href="/"
-            className="flex-shrink-0 flex items-center justify-center"
-          >
-            <div className="flex items-center gap-3">
-              <Image
-                src="/images/svg/logo.svg"
-                alt="site logo"
-                width={250}
-                height={60}
-                className="w-[110px] h-[40px] md:w-[250px] md:h-[60px] object-contain"
-              />
-            </div>
+          {/* LOGO */}
+          <Link href="/" className="flex-shrink-0 flex items-center">
+            <Image
+              src="/images/svg/logo.svg"
+              alt="site logo"
+              width={250}
+              height={60}
+              className="w-[110px] h-[40px] md:w-[250px] md:h-[60px] object-contain"
+            />
           </Link>
 
-          {/* DESKTOP PART */}
-          <div className="hidden md:flex flex-1 items-stretch gap-4 md:gap-6">
+          {/* DESKTOP */}
+          <div className="hidden md:flex flex-1 gap-6">
             {/* NAV + SEARCH */}
-            <div className="flex flex-col flex-1 gap-1.5 justify-between">
+            <div className="flex flex-col flex-1 justify-between">
               <nav className="flex items-center gap-5">
                 {NAV_LINKS.map((item) => (
                   <Link
@@ -69,71 +72,90 @@ const HeaderTopBar: React.FC<HeaderTopBarProps> = ({
                 ))}
               </nav>
 
-              <form
-                className="mt-0.5 flex items-stretch border border-[#c79b60] h-[34px] max-w-full"
-                role="search"
-              >
+              <form className="flex border border-[#d6aa6d] h-[34px]">
                 <input
-                  type="text"
                   placeholder="Поиск"
-                  className="flex-1 bg-[#111111] px-3 text-[12px] md:text-[13px] text-[#f6f2ea] placeholder:text-[#b9b4a9] outline-none border-none"
+                  className="flex-1 bg-[#111] px-3 text-[12px] text-[#f6f2ea] outline-none"
                 />
-                <button
-                  type="submit"
-                  className="flex items-center justify-center bg-[#c79b60] px-3 md:px-4 hover:bg-[#d3a96e] transition-colors"
-                >
+                <button className="bg-[#c79b60] px-4">
                   <Search className="w-4 h-4 text-[#231f20]" />
                 </button>
               </form>
             </div>
 
-            {/* RIGHT – CONTACTS */}
+            {/* CONTACTS */}
             <div className="flex flex-col items-end justify-between min-w-[210px]">
-              <div className="flex flex-col items-end gap-[1px]">
-                <a
-                  href="tel:+79040395226"
-                  className="text-[14px] md:text-[15px] font-medium whitespace-nowrap"
-                >
-                  +7 904 039 52 26
-                </a>
-                <a
-                  href="mailto:info@marble-moscow.ru"
-                  className="text-[12px] md:text-[13px] whitespace-nowrap"
-                >
-                  info@marble-moscow.ru
-                </a>
+              <div className="text-right">
+                {contact?.phone && (
+                  <a
+                    href={`tel:${phoneClean}`}
+                    className="block text-[15px] font-medium"
+                  >
+                    {contact.phone}
+                  </a>
+                )}
+
+                {contact?.email && (
+                  <a
+                    href={`mailto:${contact.email}`}
+                    className="block text-[13px]"
+                  >
+                    {contact.email}
+                  </a>
+                )}
               </div>
 
               <div className="flex items-center gap-2.5 mt-1.5">
-                {[Mail, MessageCircle, Send, Globe2].map((Icon, idx) => (
-                  <a
-                    key={idx}
-                    href="#"
-                    className="flex h-7 w-7 items-center justify-center rounded-full border border-[#c79b60] hover:bg-[#c79b60] hover:text-[#111111] transition-colors"
-                  >
-                    <Icon className="w-3.5 h-3.5" />
+                {contact?.email && (
+                  <a href={`mailto:${contact.email}`} className="icon-btn">
+                    <Mail className="w-3.5 h-3.5" />
                   </a>
-                ))}
+                )}
+
+                {contact?.whatsapp && (
+                  <a
+                    href={contact.whatsapp}
+                    target="_blank"
+                    className="icon-btn"
+                  >
+                    <MessageCircle className="w-3.5 h-3.5" />
+                  </a>
+                )}
+
+                {contact?.telegram && (
+                  <a
+                    href={contact.telegram}
+                    target="_blank"
+                    className="icon-btn"
+                  >
+                    <Send className="w-3.5 h-3.5" />
+                  </a>
+                )}
+
+                <span className="icon-btn">
+                  <Globe2 className="w-3.5 h-3.5" />
+                </span>
               </div>
             </div>
           </div>
 
-          {/* MOBILE RIGHT SIDE */}
+          {/* MOBILE */}
           <div className="ml-auto flex md:hidden items-center gap-2">
-            <a
-              href="tel:+79040395226"
-              className="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full border border-[#3a3a3a]"
-            >
-              <Phone className="w-4 h-4 text-[#c79b60]" />
-              <span>Позвонить</span>
-            </a>
+            {contact?.phone && (
+              <a
+                href={`tel:${phoneClean}`}
+                className="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full border border-[#3a3a3a]"
+              >
+                <Phone className="w-4 h-4 text-[#c79b60]" />
+                Позвонить
+              </a>
+            )}
+
             <button
-              type="button"
               onClick={onOpenMobileMenu}
-              aria-label="Open menu"
               className="inline-flex h-9 w-9 items-center justify-center rounded border border-[#3a3a3a]"
             >
-              <Menu className="w-5 h-5 text-[#f6f2ea]" />
+              <Menu className="w-5 h-5" />
             </button>
           </div>
         </div>

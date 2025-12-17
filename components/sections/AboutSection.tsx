@@ -1,11 +1,12 @@
 import Image from "next/image";
 
 const aboutImages = [
-  "/images/about.jpg",
-  "/images/about2.jpg",
-  "/images/about.jpg",
-  "/images/about2.jpg",
-  "/images/about.jpg",
+  "/images/png/3.png",
+  "/images/png/4.png",
+  "/images/png/5.png",
+  "/images/png/6.png",
+  "/images/png/7.png",
+  "/images/png/8.png",
 ];
 
 const AboutSection = () => {
@@ -15,18 +16,15 @@ const AboutSection = () => {
         {/* SECTION TITLE */}
         <h2 className="mb-6 text-center text-2xl sm:text-3xl">О нас</h2>
 
-        {/* TOP IMAGES */}
         <div className="mb-8 flex flex-wrap justify-center gap-3 sm:gap-4">
           {aboutImages.map((src, idx) => (
-            <div
-              key={src}
-              className="relative h-[90px] w-[130px] sm:h-[110px] sm:w-[160px]"
-            >
+            <div key={src} className="relative">
               <Image
                 src={src}
                 alt={`about ${idx + 1}`}
-                fill
-                className="object-cover"
+                width={160}
+                height={110}
+                className="object-contain  h-[90px] w-auto sm:h-[110px] sm:w-auto"
               />
             </div>
           ))}

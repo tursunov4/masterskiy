@@ -111,7 +111,7 @@ const NaturalStoneSections = () => {
 
             <div className="relative mt-4 h-[230px] sm:h-[260px] lg:h-[290px]">
               <Image
-                src="/images/about.jpg" // o'zingdagi rasm
+                src="/images/png/1.png" // o'zingdagi rasm
                 alt="Интерьер с камнем"
                 fill
                 className="object-cover"
@@ -125,7 +125,6 @@ const NaturalStoneSections = () => {
           </div>
         </div>
 
-        {/* 02 – EXTERIOR */}
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,2fr)] items-start">
           {/* Left: categories */}
           <div className="flex justify-center lg:justify-start">
@@ -153,7 +152,7 @@ const NaturalStoneSections = () => {
 
             <div className="relative mt-4 h-[230px] sm:h-[260px] lg:h-[290px]">
               <Image
-                src="/images/about.jpg"
+                src="/images/png/2.png"
                 alt="Экстерьер с камнем"
                 fill
                 className="object-cover"
