@@ -304,13 +304,12 @@ export default function ChurchArtSlugClient({ slug }: { slug: string }) {
 
 type FilterPanelProps = {
   mainColor: MainColor | null;
-  setMainColor: (c: MainColor | null) => void;
+  setMainColor: React.Dispatch<React.SetStateAction<MainColor | null>>;
   styles: StyleType[];
   toggleStyle: (s: StyleType) => void;
   resetFilters: () => void;
   count: number;
 };
-
 function FilterPanel({
   mainColor,
   setMainColor,
