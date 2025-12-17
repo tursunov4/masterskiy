@@ -107,7 +107,7 @@ const Footer = () => {
                       name: "Полезная информация",
                       href: "/poleznaya-informatsiya",
                     },
-                    { name: "Контакты", href: "/#" },
+                    { name: "Контакты", href: "/contact" },
                   ].map((item, idx) => (
                     <li key={idx}>
                       <Link
@@ -121,7 +121,6 @@ const Footer = () => {
                 </ul>
               </div>
 
-              {/* KATALOG KAMNYA (getSubcategories(3)) */}
               <div className="min-w-[180px]">
                 <h3 className="mb-4 text-lg font-semibold tracking-[0.18em] uppercase">
                   КАТАЛОГ КАМНЯ
@@ -141,7 +140,6 @@ const Footer = () => {
                 </ul>
               </div>
 
-              {/* KATALOG IZDELIY (getSubcategories(2)) */}
               <div className="min-w-[200px]">
                 <h3 className="mb-4 text-lg font-semibold tracking-[0.18em] uppercase">
                   КАТАЛОГ ИЗДЕЛИЙ
@@ -161,7 +159,6 @@ const Footer = () => {
                 </ul>
               </div>
 
-              {/* RIGHT: LOGO BLOCK + INFO */}
               <div className="flex flex-1 flex-col gap-4 lg:items-end">
                 <Link
                   href="/"

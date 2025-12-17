@@ -11,7 +11,7 @@ type EcosystemItem = {
 const items: EcosystemItem[] = [
   {
     id: 1,
-    icon: "/images/icons/quarry.svg",
+    icon: "/images/svg/11.svg",
     title: "ПРЯМЫЕ КОНТРАКТЫ С КАРЬЕРАМИ СО ВСЕГО МИРА",
     text: [
       "Италия: Каррара, Каррар Уайт, Статуарио",
@@ -22,11 +22,11 @@ const items: EcosystemItem[] = [
       "Африка: эксклюзивные граниты",
       "Это гарантирует доступ к редчайшим блокам камня по оптимальным ценам.",
     ],
-    image: "/images/eco.jpg",
+    image: "/images/png/eco1.png",
   },
   {
     id: 2,
-    icon: "/images/icons/team.svg",
+    icon: "/images/svg/12.svg",
     title: "СВОЯ КОМАНДА ХУДОЖНИКОВ-МОНУМЕНТАЛИСТОВ",
     text: [
       "Наш творческий костяк — выпускники ведущих художественных вузов России:",
@@ -35,11 +35,11 @@ const items: EcosystemItem[] = [
       "• ВГИК им. Герасимова — графика и визуальный образ",
       "Средний стаж работы наших мастеров — 15 лет, многие имеют ученые степени.",
     ],
-    image: "/images/eco.jpg",
+    image: "/images/png/eco2.png",
   },
   {
     id: 3,
-    icon: "/images/icons/tech.svg",
+    icon: "/images/svg/13.svg",
     title: "СОВРЕМЕННЫЕ ТЕХНОЛОГИИ ОБРАБОТКИ",
     text: [
       "Сочетаем вековые традиции с инновациями:",
@@ -49,11 +49,11 @@ const items: EcosystemItem[] = [
       "• Печи и установки для деликатной обработки крупных материалов",
       "Такое оборудование — наш щит, камень — наш материал, а ваше доверие — наша главная ценность.",
     ],
-    image: "/images/eco.jpg",
+    image: "/images/png/eco3.png",
   },
   {
     id: 4,
-    icon: "/images/icons/world.svg",
+    icon: "/images/svg/14.svg",
     title: "ГЕОГРАФИЯ ПРОЕКТОВ",
     text: [
       "От всей России — от Калининграда до Владивостока",
@@ -62,11 +62,11 @@ const items: EcosystemItem[] = [
       "Ближний Восток — частные дворцы в ОАЭ, Катаре",
       "Международная логистика, таможенное сопровождение и собственные монтажные бригады в ключевых регионах — ваша уверенность в реализации проекта любого масштаба.",
     ],
-    image: "/images/eco.jpg",
+    image: "/images/png/eco4.png",
   },
   {
     id: 5,
-    icon: "/images/icons/security.svg",
+    icon: "/images/svg/15.svg",
     title: "ПОЛНАЯ КОНФИДЕНЦИАЛЬНОСТЬ",
     text: [
       "Мы понимаем ценность вашей приватности:",
@@ -75,7 +75,7 @@ const items: EcosystemItem[] = [
       "• Персональный менеджер и команда под каждого клиента",
       "Для нас важно, чтобы ваш дом оставался таким же интимным пространством, как и задумывалось.",
     ],
-    image: "/images/eco.jpg",
+    image: "/images/png/eco5.png",
   },
 ];
 
@@ -134,13 +134,12 @@ const EcosystemSection = () => {
                 </div>
               </div>
 
-              {/* Image */}
               <div className="relative mt-2 h-[150px] sm:h-[170px] lg:h-[185px]">
                 <Image
                   src={item.image}
                   alt={item.title}
                   fill
-                  className="object-cover"
+                  className="object-contain object-right"
                 />
               </div>
             </div>

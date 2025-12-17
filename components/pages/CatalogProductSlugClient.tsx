@@ -17,6 +17,7 @@ import {
   getMozaykaTypes,
   getProductsBySubcategory,
 } from "@/lib/catalog/api";
+import PaginationControls from "../ui/PaginationControls";
 
 function colorNameToHex(name?: string) {
   const n = (name ?? "").toLowerCase();
@@ -405,54 +406,16 @@ export default function CatalogProductSlugClient({ slug }: { slug: string }) {
                 )}
               </div>
 
-              {/* SHOW MORE (faqat hasNext bo‘lsa) */}
-              {showControls && hasNext && (
-                <button
-                  onClick={loadMore}
-                  disabled={loading}
-                  className={`mt-8 flex w-full items-center justify-center py-2 text-[13px] uppercase tracking-[0.14em] transition
-                    ${
-                      loading
-                        ? "bg-black/10 text-black/40 cursor-not-allowed"
-                        : "bg-[#c79b60] text-[#2c2420] hover:bg-[#d8b976]"
-                    }`}
-                >
-                  {loading ? "Загрузка..." : "Показать еще"}
-                </button>
-              )}
-
-              {/* PAGINATION (faqat ko‘p sahifa bo‘lsa) */}
-              {showControls && (
-                <div className="mt-5 flex items-center justify-center gap-2 pb-2">
-                  <button
-                    onClick={goPrev}
-                    disabled={!hasPrev || loading}
-                    className={`flex h-9 w-9 items-center justify-center rounded-[6px] border text-sm
-                      ${
-                        !hasPrev || loading
-                          ? "border-black/20 bg-black/5 text-black/30 cursor-not-allowed"
-                          : "border-black/40 bg-[#c79b60] text-[#2c2420] hover:bg-[#d8b976]"
-                      }`}
-                  >
-                    ←
-                  </button>
-
-                  <span className="px-2 text-sm text-black/70">{page}</span>
-
-                  <button
-                    onClick={goNext}
-                    disabled={!hasNext || loading}
-                    className={`flex h-9 w-9 items-center justify-center rounded-[6px] border text-sm
-                      ${
-                        !hasNext || loading
-                          ? "border-black/20 bg-black/5 text-black/30 cursor-not-allowed"
-                          : "border-black/40 bg-[#c79b60] text-[#2c2420] hover:bg-[#d8b976]"
-                      }`}
-                  >
-                    →
-                  </button>
-                </div>
-              )}
+              <PaginationControls
+                page={page}
+                hasPrev={hasPrev}
+                hasNext={hasNext}
+                loading={loading}
+                onPrev={goPrev}
+                onNext={goNext}
+                showMore
+                onLoadMore={loadMore}
+              />
             </section>
           </div>
         </div>

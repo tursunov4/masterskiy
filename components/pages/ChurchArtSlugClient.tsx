@@ -6,6 +6,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import PaginationControls from "../ui/PaginationControls";
 
 type MainColor = "white" | "gold" | "brown" | "black" | "other";
 type StyleType = "classic" | "academic";
@@ -31,10 +32,8 @@ type Paginated<T> = {
 const API_BASE =
   process.env.NEXT_PUBLIC_API_BASE || "https://admin.marble-moscow.ru";
 
-// ✅ CHURCH ART category id (sizning API misolda 5 edi)
 const CATEGORY_ID = 5;
 
-/** API color.name -> UI MainColor */
 function mapApiColorToMainColor(apiColorName?: string | null): MainColor {
   const c = (apiColorName ?? "").toLowerCase();
 
@@ -49,7 +48,6 @@ function mapApiColorToMainColor(apiColorName?: string | null): MainColor {
   return "other";
 }
 
-/** API style -> UI StyleType */
 function normalizeStyle(style?: string | null): StyleType | null {
   const s = (style ?? "").toLowerCase();
   if (s === "classic") return "classic";
@@ -80,7 +78,6 @@ export default function ChurchArtSlugClient({ slug }: { slug: string }) {
   const [mainColor, setMainColor] = useState<MainColor | null>(null);
   const [styles, setStyles] = useState<StyleType[]>([]);
 
-  // API state
   const [items, setItems] = useState<ApiProduct[]>([]);
   const [count, setCount] = useState(0);
   const [page, setPage] = useState(1);
@@ -100,7 +97,6 @@ export default function ChurchArtSlugClient({ slug }: { slug: string }) {
     setStyles([]);
   };
 
-  // load page 1 when slug changes
   useEffect(() => {
     let cancelled = false;
 
@@ -129,7 +125,6 @@ export default function ChurchArtSlugClient({ slug }: { slug: string }) {
     };
   }, [slug]);
 
-  // filters (client-side)
   const filteredItems = useMemo(() => {
     return items.filter((item) => {
       const itemColor = mapApiColorToMainColor(item.color?.name);
@@ -147,10 +142,6 @@ export default function ChurchArtSlugClient({ slug }: { slug: string }) {
     });
   }, [items, mainColor, styles]);
 
-  // ✅ product kam bo‘lsa controls ko‘rinmasin
-  const showControls = !(!hasNext && !hasPrev);
-
-  // load more (append)
   const loadMore = async () => {
     if (!hasNext || loading) return;
 
@@ -291,54 +282,16 @@ export default function ChurchArtSlugClient({ slug }: { slug: string }) {
                   </p>
                 )}
               </div>
-
-              {/* SHOW MORE -> faqat next bo‘lsa */}
-              {showControls && hasNext && (
-                <button
-                  onClick={loadMore}
-                  disabled={loading}
-                  className={`mt-8 flex w-full items-center justify-center py-2 text-[13px] uppercase tracking-[0.14em] transition ${
-                    loading
-                      ? "bg-black/10 text-black/40 cursor-not-allowed"
-                      : "bg-[#c79b60] text-[#2c2420] hover:bg-[#d8b97c]"
-                  }`}
-                >
-                  {loading ? "Загрузка..." : "Показать еще"}
-                </button>
-              )}
-
-              {/* PAGINATION -> faqat ko‘p sahifa bo‘lsa */}
-              {showControls && (
-                <div className="mt-4 flex items-center justify-center gap-2 pb-2">
-                  <button
-                    onClick={goPrev}
-                    disabled={!hasPrev || loading}
-                    className={`flex h-8 w-8 items-center justify-center rounded-[6px] border text-sm ${
-                      !hasPrev || loading
-                        ? "border-black/10 bg-black/5 text-black/30 cursor-not-allowed"
-                        : "border-black/40 bg-[#c79b60] hover:bg-[#d8b97c]"
-                    }`}
-                  >
-                    ←
-                  </button>
-
-                  <div className="flex h-8 items-center justify-center rounded-[6px] border border-black/40 bg-white px-3 text-sm">
-                    {page}
-                  </div>
-
-                  <button
-                    onClick={goNext}
-                    disabled={!hasNext || loading}
-                    className={`flex h-8 w-8 items-center justify-center rounded-[6px] border text-sm ${
-                      !hasNext || loading
-                        ? "border-black/10 bg-black/5 text-black/30 cursor-not-allowed"
-                        : "border-black/40 bg-[#c79b60] hover:bg-[#d8b97c]"
-                    }`}
-                  >
-                    →
-                  </button>
-                </div>
-              )}
+              <PaginationControls
+                page={page}
+                hasPrev={hasPrev}
+                hasNext={hasNext}
+                loading={loading}
+                onPrev={goPrev}
+                onNext={goNext}
+                showMore
+                onLoadMore={loadMore}
+              />
             </div>
           </div>
         </section>
@@ -348,8 +301,6 @@ export default function ChurchArtSlugClient({ slug }: { slug: string }) {
     </main>
   );
 }
-
-/* ---------------- FILTER PANEL ---------------- */
 
 type FilterPanelProps = {
   mainColor: MainColor | null;

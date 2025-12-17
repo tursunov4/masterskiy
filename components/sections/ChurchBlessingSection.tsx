@@ -1,7 +1,10 @@
-// components/ChurchBlessingSection.tsx
+"use client";
+import { useAppDispatch } from "@/store/hooks";
+import { openConsult } from "@/store/slices/consult.slice";
 import Link from "next/link";
 
 const ChurchBlessingSection = () => {
+  const dispatch = useAppDispatch();
   return (
     <section
       className="relative w-full h-[220px] sm:h-[260px] lg:h-[300px] bg-cover bg-center"
@@ -24,13 +27,13 @@ const ChurchBlessingSection = () => {
             </p>
 
             <div className="flex justify-center">
-              <Link
-                href="/church-art/consult"
+              <button
+                onClick={() => dispatch(openConsult())}
                 className="inline-flex items-center gap-2 bg-[#c79b60] px-4 py-2 text-xs sm:text-sm uppercase tracking-[0.12em] text-[#2c2420] hover:bg-[#d8b97c] transition"
               >
                 Узнать подробнее
                 <span className="text-base">»</span>
-              </Link>
+              </button>
             </div>
           </div>
         </div>

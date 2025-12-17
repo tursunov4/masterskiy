@@ -2,15 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import {
-  Search,
-  Menu,
-  Mail,
-  MessageCircle,
-  Send,
-  Globe2,
-  Phone,
-} from "lucide-react";
+import { Search, Menu, Phone } from "lucide-react";
 import { NAV_LINKS, isActivePath } from "./navConfig";
 import { useAppSelector } from "@/store/hooks";
 
@@ -108,7 +100,13 @@ const HeaderTopBar: React.FC<HeaderTopBarProps> = ({
               <div className="flex items-center gap-2.5 mt-1.5">
                 {contact?.email && (
                   <a href={`mailto:${contact.email}`} className="icon-btn">
-                    <Mail className="w-3.5 h-3.5" />
+                    <Image
+                      alt="email"
+                      width={16}
+                      height={16}
+                      src="/images/svg/email.svg"
+                      className="w-5 h-5"
+                    />
                   </a>
                 )}
 
@@ -118,7 +116,13 @@ const HeaderTopBar: React.FC<HeaderTopBarProps> = ({
                     target="_blank"
                     className="icon-btn"
                   >
-                    <MessageCircle className="w-3.5 h-3.5" />
+                    <Image
+                      alt="wh"
+                      width={16}
+                      height={16}
+                      src="/images/svg/wh.svg"
+                      className="w-5 h-5"
+                    />
                   </a>
                 )}
 
@@ -128,13 +132,15 @@ const HeaderTopBar: React.FC<HeaderTopBarProps> = ({
                     target="_blank"
                     className="icon-btn"
                   >
-                    <Send className="w-3.5 h-3.5" />
+                    <Image
+                      alt="telegram"
+                      width={16}
+                      height={16}
+                      src="/images/svg/tg.svg"
+                      className="w-5 h-5"
+                    />
                   </a>
                 )}
-
-                <span className="icon-btn">
-                  <Globe2 className="w-3.5 h-3.5" />
-                </span>
               </div>
             </div>
           </div>
