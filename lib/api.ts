@@ -1,7 +1,11 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE;
+// Глобальный API_BASE из env
+export const API_BASE =
+  process.env.NEXT_PUBLIC_API_BASE || "https://admin.marble-moscow.ru";
 
-if (!API_BASE) {
-  throw new Error("NEXT_PUBLIC_API_BASE is not set in .env.local");
+if (!process.env.NEXT_PUBLIC_API_BASE) {
+  console.warn(
+    "NEXT_PUBLIC_API_BASE is not set in .env.local, using default: https://admin.marble-moscow.ru"
+  );
 }
 
 type FetchOptions = RequestInit & {

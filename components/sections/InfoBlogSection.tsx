@@ -141,7 +141,7 @@ export default function InfoBlogSection({ pageSize = 9 }: Props) {
 
                 <div className="px-2 pb-3 pt-1 text-[12px] leading-snug">
                   <Link
-                    href={`/blog/${post.slug}`}
+                    href={`/info/${post.slug}`}
                     className="block font-semibold hover:underline"
                   >
                     {post.title}
@@ -151,15 +151,7 @@ export default function InfoBlogSection({ pageSize = 9 }: Props) {
             );
           })}
 
-          {/* Maketdagi bo‘sh kartochkalar (xohlasangiz qoldiramiz) */}
-          {items.length > 0 &&
-            items.length < 3 &&
-            Array.from({ length: 3 - items.length }).map((_, i) => (
-              <div
-                key={`empty-${i}`}
-                className="hidden h-[220px] border border-dashed border-black/20 md:block"
-              />
-            ))}
+      
         </div>
 
         {items.length === 0 && !loading && !error && (

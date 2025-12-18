@@ -54,12 +54,7 @@ const fallbackItems: UiCard[] = [
   },
 ];
 
-function formatRubFromApi(price?: string | null) {
-  if (!price) return "Цена: по запросу";
-  const n = Number(price);
-  if (Number.isNaN(n)) return `от ${price} руб.`;
-  return `от ${new Intl.NumberFormat("ru-RU").format(n)} руб.`;
-}
+import { formatPriceRub } from "@/lib/utils";
 
 function resolveAllLink(items: ApiTopProduct[]) {
   if (items.some((p) => p.category.slug === "katalog-kamnya")) {
@@ -115,7 +110,7 @@ export default function FeaturedProducts() {
         title: p.name,
         stone: p.name ?? "—",
         country: p.country?.name ?? "—",
-        price: formatRubFromApi(p.price),
+        price: formatPriceRub(p.price),
       };
     });
   }, [apiItems]);

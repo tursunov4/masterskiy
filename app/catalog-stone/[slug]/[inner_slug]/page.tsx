@@ -2,6 +2,9 @@
 
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SectionHeader from "@/components/ui/SectionHeader";
+import DetailActionButtons from "@/components/ui/DetailActionButtons";
+import SimilarProductsSlider from "@/components/ui/SimilarProductsSlider";
+import { formatPriceRubPerM2, formatStyle } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -25,23 +28,6 @@ type RelatedMarble = {
   image: string;
   href: string;
 };
-
-function formatRub(price?: string | null) {
-  if (!price) return "Цена: по запросу";
-  const n = Number(price);
-  if (Number.isNaN(n)) return `от ${price} руб.`;
-  return `от ${new Intl.NumberFormat("ru-RU").format(n)} руб./м²`;
-}
-
-function uiStyle(style?: string | null) {
-  const s = (style ?? "").toLowerCase();
-  if (!s) return "—";
-  if (s === "classic") return "Классический";
-  if (s === "modern") return "Современный";
-  if (s === "luxury") return "Роскошный";
-  if (s === "vintage") return "Винтаж";
-  return style!;
-}
 
 export default function MarbleInnerPage() {
   const params = useParams<{ slug: string; inner_slug: string }>();
@@ -87,7 +73,7 @@ export default function MarbleInnerPage() {
 
     const color = product?.color?.name ?? "—";
     const origin = product?.country?.name ?? "—";
-    const price = formatRub(product?.price);
+    const price = formatPriceRubPerM2(product?.price);
     const subcategory = product?.subcategory?.name ?? "—";
 
     return { name, image, color, origin, price, subcategory };
@@ -128,91 +114,96 @@ export default function MarbleInnerPage() {
               <div className="h-[260px] border border-black/10 bg-black/5 animate-pulse" />
             </div>
           ) : (
-            <div className="grid gap-6 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)]">
-              {/* Slab image */}
-              <div>
-                <div className="relative h-[260px] sm:h-[320px] md:h-[360px] border border-black/20">
-                  <Image
-                    src={view.image}
-                    alt={view.name}
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                </div>
-                <p className="mt-2 text-[11px] italic text-[#555]">
-                  Цвет материала вживую может отличаться от цвета на мониторе.
-                </p>
-              </div>
-
-              {/* Specs text */}
-              <div className="text-sm leading-relaxed">
-                <p>
-                  <span className="font-semibold">Артикул:</span>{" "}
-                  {product?.id ?? "—"}
-                </p>
-
-                <p>
-                  <span className="font-semibold">Тип:</span>{" "}
-                  <Link href={`/catalog/marble/${slug}`} className="underline">
-                    {product?.subcategory?.name ?? "Мрамор"}
-                  </Link>
-                </p>
-
-                <p>
-                  <span className="font-semibold">Название:</span>{" "}
-                  <span className="underline">{view.name}</span>
-                </p>
-
-                <p>
-                  <span className="font-semibold">Цвет:</span> {view.color}
-                </p>
-
-                <p>
-                  <span className="font-semibold">Месторождение:</span>{" "}
-                  {view.origin}
-                </p>
-
-                <p>
-                  <span className="font-semibold">Цена:</span>{" "}
-                  <span className="underline">{view.price}</span>
-                </p>
-
-                <p>
-                  <span className="font-semibold">Зеркальный рисунок:</span> —
-                </p>
-                <p>
-                  <span className="font-semibold">Работает на просвет:</span> —
-                </p>
-                <p>
-                  <span className="font-semibold">
-                    Устойчивость к повреждениям:
-                  </span>{" "}
-                  —
-                </p>
-                <p>
-                  <span className="font-semibold">
-                    Устойчивость к УФ лучам:
-                  </span>{" "}
-                  —
-                </p>
-
-                {product?.description ? (
-                  <div className="mt-3">
-                    <span className="font-semibold">Описание:</span>
-                    <div
-                      className="prose prose-sm max-w-none"
-                      dangerouslySetInnerHTML={{ __html: product.description }}
+            <>
+              <div className="grid gap-6 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)]">
+                {/* Slab image */}
+                <div>
+                  <div className="relative h-[260px] sm:h-[320px] md:h-[360px] border border-black/20">
+                    <Image
+                      src={view.image}
+                      alt={view.name}
+                      fill
+                      className="object-cover"
+                      priority
                     />
                   </div>
-                ) : null}
+                  <p className="mt-2 text-[11px] italic text-[#555]">
+                    Цвет материала вживую может отличаться от цвета на мониторе.
+                  </p>
+                </div>
+
+                {/* Specs text */}
+                <div className="text-sm leading-relaxed">
+                  <p>
+                    <span className="font-semibold">Артикул:</span>{" "}
+                    {product?.id ?? "—"}
+                  </p>
+
+                  <p>
+                    <span className="font-semibold">Тип:</span>{" "}
+                    <Link href={`/catalog/marble/${slug}`} className="underline">
+                      {product?.subcategory?.name ?? "Мрамор"}
+                    </Link>
+                  </p>
+
+                  <p>
+                    <span className="font-semibold">Название:</span>{" "}
+                    <span className="underline">{view.name}</span>
+                  </p>
+
+                  <p>
+                    <span className="font-semibold">Цвет:</span> {view.color}
+                  </p>
+
+                  <p>
+                    <span className="font-semibold">Месторождение:</span>{" "}
+                    {view.origin}
+                  </p>
+
+                  <p>
+                    <span className="font-semibold">Цена:</span>{" "}
+                    <span className="underline">{view.price}</span>
+                  </p>
+
+                  <p>
+                    <span className="font-semibold">Зеркальный рисунок:</span> —
+                  </p>
+                  <p>
+                    <span className="font-semibold">Работает на просвет:</span> —
+                  </p>
+                  <p>
+                    <span className="font-semibold">
+                      Устойчивость к повреждениям:
+                    </span>{" "}
+                    —
+                  </p>
+                  <p>
+                    <span className="font-semibold">
+                      Устойчивость к УФ лучам:
+                    </span>{" "}
+                    —
+                  </p>
+
+                  {product?.description ? (
+                    <div className="mt-3">
+                      <span className="font-semibold">Описание:</span>
+                      <div
+                        className="prose prose-sm max-w-none"
+                        dangerouslySetInnerHTML={{ __html: product.description }}
+                      />
+                    </div>
+                  ) : null}
 
                 <p className="mt-3">
                   <span className="font-semibold">Стиль:</span>{" "}
-                  {uiStyle(product?.style)}
+                  {formatStyle(product?.style)}
                 </p>
+                </div>
               </div>
-            </div>
+
+              {/* CTA BUTTONS */}
+              <DetailActionButtons />
+            </>
           )}
         </section>
 
@@ -326,6 +317,12 @@ export default function MarbleInnerPage() {
             </div>
           </section>
         )}
+
+        {/* ПОХОЖИЕ ПРОДУКТЫ */}
+        <SimilarProductsSlider
+          productSlug={innerSlug}
+          categorySlug="catalog-stone"
+        />
       </div>
     </main>
   );

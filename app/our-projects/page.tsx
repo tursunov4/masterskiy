@@ -4,7 +4,8 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import FaqSection from "@/components/sections/FaqSection";
 import PersonalConsultSection from "@/components/sections/PersonalConsultSection";
 import SectionHeader from "@/components/ui/SectionHeader";
-
+import { API_BASE } from "@/lib/api";
+import { formatPriceRub } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
@@ -59,9 +60,6 @@ type Product = {
   slug: string;
 };
 
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE || "https://admin.marble-moscow.ru";
-
 function mapApiColorToMainColor(apiColor?: string | null): MainColor {
   const c = (apiColor ?? "").toLowerCase();
 
@@ -86,13 +84,6 @@ function mapApiStyleToStyles(apiStyle?: string | null): StyleType[] {
   if (s === "vintage") return ["luxury"];
 
   return [];
-}
-
-function formatPriceRub(price?: string | null) {
-  if (!price) return "Цена: по запросу";
-  const n = Number(price);
-  if (Number.isNaN(n)) return `Цена: ${price} руб.`;
-  return `Цена: от ${new Intl.NumberFormat("ru-RU").format(n)} руб.`;
 }
 
 async function fetchOurWorksPage(page: number): Promise<Paginated<ApiWork>> {

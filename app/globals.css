@@ -108,3 +108,21 @@ body {
   background: var(--accent);
   transform: scale(1.15);
 }
+
+/* ======================
+   SIMILAR PRODUCTS SWIPER
+====================== */
+.similar-products-swiper {
+  padding: 0 50px;
+}
+
+@media (max-width: 640px) {
+  .similar-products-swiper {
+    padding: 0;
+  }
+}
+
+.similar-products-swiper .swiper-button-disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}

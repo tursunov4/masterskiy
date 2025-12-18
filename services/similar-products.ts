@@ -1,10 +1,12 @@
-// lib/catalog/product-detail.client.ts
-export type ProductDetail = {
+// services/similar-products.ts
+
+import { API_BASE } from "@/lib/api";
+
+export type SimilarProduct = {
   id: number;
   name: string;
   slug: string;
-  image: string | null;
-  images: any[];
+  image: string;
   category: {
     id: number;
     name: string;
@@ -17,26 +19,27 @@ export type ProductDetail = {
     name: string;
     slug: string;
     image: string | null;
-    category: any;
+    category: number;
     created_at: string;
   };
-  color: { id: number; name: string } | null;
-  country: { id: number; name: string } | null;
+  color: {
+    id: number;
+    name: string;
+  } | null;
+  country: {
+    id: number;
+    name: string;
+  } | null;
   price: string | null;
-  description: string | null;
   style: string | null;
-  mozayka_type: { id: number; name: string } | null;
   is_top: boolean;
   created_at: string;
-  updated_at: string;
 };
 
-import { API_BASE } from "@/lib/api";
-
-export async function getProductByInnerSlugClient(innerSlug: string) {
+export async function getSimilarProductsClient(productSlug: string) {
   const url = `${API_BASE}/api/catalog/products/${encodeURIComponent(
-    innerSlug
-  )}/`;
+    productSlug
+  )}/similar/`;
 
   const res = await fetch(url, {
     method: "GET",
@@ -49,5 +52,6 @@ export async function getProductByInnerSlugClient(innerSlug: string) {
     throw new Error(`API ${res.status}: ${text || res.statusText}`);
   }
 
-  return (await res.json()) as ProductDetail;
+  return (await res.json()) as SimilarProduct[];
 }
+

@@ -21,8 +21,7 @@ export type SeoResponse = {
   updated_at: string;
 };
 
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE ?? "https://admin.marble-moscow.ru";
+import { API_BASE } from "./api";
 
 export async function getSeo(): Promise<SeoResponse | null> {
   try {

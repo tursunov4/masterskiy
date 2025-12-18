@@ -2,31 +2,16 @@
 
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SectionHeader from "@/components/ui/SectionHeader";
+import DetailActionButtons from "@/components/ui/DetailActionButtons";
+import SimilarProductsSlider from "@/components/ui/SimilarProductsSlider";
 import {
   getProductByInnerSlugClient,
   ProductDetail,
 } from "@/services/product-detail";
+import { formatPriceRub, formatStyle } from "@/lib/utils";
 import Image from "next/image";
-import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
-
-function formatRub(price?: string | null) {
-  if (!price) return "Цена: по запросу";
-  const n = Number(price);
-  if (Number.isNaN(n)) return `от ${price} руб.`;
-  return `от ${new Intl.NumberFormat("ru-RU").format(n)} руб.`;
-}
-
-function uiStyle(style?: string | null) {
-  const s = (style ?? "").toLowerCase();
-  if (!s) return "—";
-  if (s === "classic") return "Классический";
-  if (s === "modern") return "Современный";
-  if (s === "luxury") return "Роскошный";
-  if (s === "vintage") return "Винтаж";
-  return style!;
-}
 
 export default function ProductInnerClientPage() {
   const params = useParams<{ slug: string; inner_slug: string }>();
@@ -74,7 +59,7 @@ export default function ProductInnerClientPage() {
 
     const color = product?.color?.name ?? "—";
     const country = product?.country?.name ?? "—";
-    const price = formatRub(product?.price);
+    const price = formatPriceRub(product?.price);
 
     const mozayka = product?.mozayka_type?.name ?? "нет";
 
@@ -186,7 +171,7 @@ export default function ProductInnerClientPage() {
 
                     <p>
                       <span className="font-semibold">Стиль:</span>{" "}
-                      {uiStyle(product?.style)}
+                      {formatStyle(product?.style)}
                     </p>
 
                     <p>
@@ -207,22 +192,18 @@ export default function ProductInnerClientPage() {
                 </div>
               ) : null}
 
-              {/* CTA LINKS */}
-              <div className="mt-6 space-y-2 text-sm uppercase tracking-[0.08em]">
-                <Link href="/consult" className="block hover:underline">
-                  [ОСТАВИТЬ ЗАЯВКУ НА КОНСУЛЬТАЦИЮ]
-                </Link>
-                <Link href="/measure" className="block hover:underline">
-                  [ЗАКАЗАТЬ ВЫЕЗД ЗАМЕРЩИКА]
-                </Link>
-                <Link href="/design" className="block hover:underline">
-                  [ПОЛУЧИТЬ БЕСПЛАТНЫЙ ДИЗАЙН-ПРОЕКТ]
-                </Link>
-              </div>
+              {/* CTA BUTTONS */}
+              <DetailActionButtons />
             </>
           )}
         </section>
       </div>
+
+      {/* ПОХОЖИЕ ПРОДУКТЫ */}
+      <SimilarProductsSlider
+        productSlug={innerSlug}
+        categorySlug="catalog-product"
+      />
     </main>
   );
 }

@@ -36,12 +36,7 @@ function colorNameToHex(name?: string) {
   return map[n] ?? "#e7e1d8";
 }
 
-function formatPriceRub(price?: string | null) {
-  if (!price) return "";
-  const n = Number(price);
-  if (Number.isNaN(n)) return price;
-  return new Intl.NumberFormat("ru-RU").format(n);
-}
+import { formatPriceForCard } from "@/lib/utils";
 
 export default function CatalogStoneSlugClient({ slug }: { slug: string }) {
   const router = useRouter();
@@ -306,9 +301,7 @@ export default function CatalogStoneSlugClient({ slug }: { slug: string }) {
                     <div className="flex flex-wrap items-center justify-between gap-2 px-3 py-2 text-[13px]">
                       <span className="font-serif">{item.name}</span>
                       <span className="bg-[#c79b60] px-2 py-1 text-[11px] text-[#2c2420] transition-colors group-hover:bg-[#d8b976]">
-                        {item.price
-                          ? `Цена: ${formatPriceRub(item.price)} руб.`
-                          : "Цена: —"}
+                        {formatPriceForCard(item.price)}
                       </span>
                     </div>
                   </Link>

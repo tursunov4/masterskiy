@@ -29,8 +29,7 @@ type Paginated<T> = {
   results: T[];
 };
 
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE || "https://admin.marble-moscow.ru";
+import { API_BASE } from "@/lib/api";
 
 const CATEGORY_ID = 5;
 
