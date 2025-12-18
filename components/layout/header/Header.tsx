@@ -11,7 +11,6 @@ const Header: React.FC = () => {
   const pathname = usePathname() || "/";
 
   useEffect(() => {
-    // Mobil menyu ochilganda scrollni bloklash
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
@@ -24,7 +23,6 @@ const Header: React.FC = () => {
         pathname={pathname}
         onOpenMobileMenu={() => setMobileOpen(true)}
       />
-      {/* Strip faqat desktopda (CategoriesStrip ichida hidden lg:block) */}
       <CategoriesStrip pathname={pathname} />
       <MobileMenu
         open={mobileOpen}

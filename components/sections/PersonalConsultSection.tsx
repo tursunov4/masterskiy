@@ -2,11 +2,7 @@
 
 import React, { useState } from "react";
 import { useAppDispatch } from "@/store/hooks";
-import {
-  openConsult,
-  setField,
-  submitConsult,
-} from "@/store/slices/consult.slice";
+import { submitConsult } from "@/store/slices/consult.slice";
 
 const PersonalConsultSection: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -15,9 +11,7 @@ const PersonalConsultSection: React.FC = () => {
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
     if (!name.trim() || !phone.trim()) return;
-
     dispatch(
       submitConsult({ name: name.trim(), phone: phone.trim(), message: "" })
     );
