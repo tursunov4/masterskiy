@@ -341,7 +341,7 @@ const HeaderTopBar: React.FC<HeaderTopBarProps> = ({
                     />
                   </a>
                 )}
-
+                {/* "test" */}
                 {contact?.telegram && (
                   <a
                     href={contact.telegram}
