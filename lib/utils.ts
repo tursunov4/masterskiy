@@ -64,3 +64,4 @@ export function formatPriceRubPerM2(price?: string | null): string {
   return `от ${new Intl.NumberFormat("ru-RU").format(n)} руб./м²`;
 }
 
+
