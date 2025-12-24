@@ -159,7 +159,7 @@ const HeaderTopBar: React.FC<HeaderTopBarProps> = ({
   return (
     <div className="bg-[#111111] text-[#f6f2ea]">
       <div className="container">
-        <div className="py-2.5 flex items-stretch gap-4 md:gap-6">
+        <div className="py-2.5 flex items-start gap-4 md:gap-6">
           {/* LOGO */}
           <Link href="/" className="flex-shrink-0 flex items-center">
             <Image
@@ -171,10 +171,8 @@ const HeaderTopBar: React.FC<HeaderTopBarProps> = ({
             />
           </Link>
 
-          {/* DESKTOP */}
-          <div className="hidden md:flex flex-1 gap-6">
-            {/* NAV + SEARCH */}
-            <div className="flex flex-col flex-1 justify-between">
+          <div className="hidden md:flex flex-1 items-center  ">
+            <div className="flex flex-col flex-1 justify-between gap-3 mb-[10px]">
               <nav className="flex items-center gap-5">
                 {NAV_LINKS.map((item) => (
                   <Link
@@ -297,7 +295,7 @@ const HeaderTopBar: React.FC<HeaderTopBarProps> = ({
                 {contact?.phone && (
                   <a
                     href={`tel:${phoneClean}`}
-                    className="block text-[15px] font-medium"
+                    className="block text-[20px] font-medium"
                   >
                     {contact.phone}
                   </a>
@@ -306,7 +304,7 @@ const HeaderTopBar: React.FC<HeaderTopBarProps> = ({
                 {contact?.email && (
                   <a
                     href={`mailto:${contact.email}`}
-                    className="block text-[13px]"
+                    className="block text-[15px]"
                   >
                     {contact.email}
                   </a>
@@ -314,46 +312,99 @@ const HeaderTopBar: React.FC<HeaderTopBarProps> = ({
               </div>
 
               <div className="flex items-center gap-2.5 mt-1.5">
+                {/* EMAIL */}
                 {contact?.email && (
-                  <a href={`mailto:${contact.email}`} className="icon-btn">
+                  <a
+                    href={`mailto:${contact.email}`}
+                    className="group relative inline-flex items-center justify-center
+                 w-9 h-9 rounded-full
+                 transition-colors duration-300
+                 hover:bg-[#d7b06a]"
+                  >
+                    {/* default */}
                     <Image
-                      alt="email"
-                      width={16}
-                      height={16}
                       src="/images/svg/email.svg"
-                      className="w-5 h-5"
+                      alt="email"
+                      width={24}
+                      height={24}
+                      className="absolute w-[24px] h-[24px]
+                   opacity-100 transition-opacity duration-200
+                   group-hover:opacity-0"
+                    />
+
+                    {/* hover */}
+                    <Image
+                      src="/images/svg/emailwhite.svg"
+                      alt="email hover"
+                      width={24}
+                      height={24}
+                      className="absolute w-[24px] h-[24px]
+                   opacity-0 transition-opacity duration-200
+                   group-hover:opacity-100"
                     />
                   </a>
                 )}
 
+                {/* WHATSAPP */}
                 {contact?.whatsapp && (
                   <a
                     href={contact.whatsapp}
                     target="_blank"
-                    className="icon-btn"
+                    className="group relative inline-flex items-center justify-center
+                 w-9 h-9 rounded-full
+                 transition-colors duration-300
+                 hover:bg-[#d7b06a]"
                   >
                     <Image
-                      alt="wh"
-                      width={16}
-                      height={16}
                       src="/images/svg/wh.svg"
-                      className="w-5 h-5"
+                      alt="whatsapp"
+                      width={24}
+                      height={24}
+                      className="absolute w-[24px] h-[24px]
+                   opacity-100 transition-opacity duration-200
+                   group-hover:opacity-0"
+                    />
+
+                    <Image
+                      src="/images/svg/whwhite.svg"
+                      alt="whatsapp hover"
+                      width={24}
+                      height={24}
+                      className="absolute w-[24px] h-[24px]
+                   opacity-0 transition-opacity duration-200
+                   group-hover:opacity-100"
                     />
                   </a>
                 )}
-                {/* "test" */}
+
+                {/* TELEGRAM */}
                 {contact?.telegram && (
                   <a
                     href={contact.telegram}
                     target="_blank"
-                    className="icon-btn"
+                    className="group relative inline-flex items-center justify-center
+                 w-9 h-9 rounded-full
+                 transition-colors duration-300
+                 hover:bg-[#d7b06a]"
                   >
                     <Image
-                      alt="telegram"
-                      width={16}
-                      height={16}
                       src="/images/svg/tg.svg"
-                      className="w-5 h-5"
+                      alt="telegram"
+                      width={20}
+                      height={20}
+                      className="absolute w-5 h-5
+                   opacity-100 transition-opacity duration-200
+                   group-hover:opacity-0"
+                    />
+
+                    <Image
+                      src="/images/svg/tgwhite.svg"
+                      alt="telegram hover"
+                      width={20}
+                      height={20}
+                      className="absolute w-5 h-5
+                   opacity-0 transition-opacity duration-200
+                   group-hover:opacity-100"
                     />
                   </a>
                 )}

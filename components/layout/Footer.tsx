@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Mail, Phone, MapPin } from "lucide-react";
@@ -6,18 +7,23 @@ import { useEffect, useState } from "react";
 import { getSubcategories, type Subcategory } from "@/services/catalog";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { fetchContactInfo } from "@/store/slices/contactSlice";
+
 const STONE_CATEGORY_SLUG = "katalog-kamnya";
 const PRODUCT_CATEGORY_SLUG = `katalog-izdelij`;
+
 const Footer = () => {
   const dispatch = useAppDispatch();
   const contact = useAppSelector((s) => s.contact.data);
+
   useEffect(() => {
     dispatch(fetchContactInfo());
   }, [dispatch]);
+
   const footerLinkClass =
     "relative inline-flex items-center pb-[2px] " +
     "after:absolute after:left-0 after:-bottom-[1px] after:h-[1px] after:bg-[#d7b06a] after:transition-all after:w-0 " +
     "hover:text-[#d7b06a] hover:after:w-full";
+
   const stoneFallback = [
     { id: 1, name: "Мрамор", slug: "marble" },
     { id: 2, name: "Гранит", slug: "granite" },
@@ -70,9 +76,7 @@ const Footer = () => {
             slug: s.slug,
           }))
         );
-      } catch {
-        // fallback qoladi
-      }
+      } catch {}
     }
 
     load();
@@ -82,22 +86,22 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className=" bg-[#120f0f] text-[#f5eee5]">
-      <section className="relative bg-[url('/images/png/footer.png')]  bg-cover bg-center">
-        <div className="absolute inset-0 bg-black/60" />
+    <footer className="bg-[#120f0f] text-[#f5eee5]">
+      <section className="relative bg-[url('/images/png/footer.png')] bg-cover bg-center">
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/35" />
 
-        <div className="container">
-          <div className="relative mx-auto px-4 py-14 md:py-16">
-            <div className="flex flex-col gap-12 lg:flex-row lg:gap-20">
+        <div className="container relative">
+          <div className="px-4 py-16">
+            <div className="flex flex-col gap-14 lg:flex-row lg:gap-20">
+              {/* LINKS */}
               <div className="min-w-[180px]">
-                <h3 className="mb-4 text-lg font-semibold tracking-[0.18em] uppercase">
+                <h3 className="mb-4 text-lg tracking-[0.18em] uppercase">
                   О НАС
                 </h3>
-
-                <ul className="space-y-2 text-sm md:text-base">
+                <ul className="space-y-2 text-sm">
                   {[
                     { name: "Вопрос-ответ", href: "/our-projects#faq" },
-                    { name: "Доставка ", href: "/#" },
+                    { name: "Доставка", href: "/#" },
                     {
                       name: "Полезная информация",
                       href: "/poleznaya-informatsiya",
@@ -105,11 +109,8 @@ const Footer = () => {
                     { name: "Контакты", href: "/contact" },
                   ].map((item, idx) => (
                     <li key={idx}>
-                      <Link
-                        href={item.href}
-                        className="group flex items-center gap-1"
-                      >
-                        <span className={footerLinkClass}>{item.name}</span>
+                      <Link href={item.href} className={footerLinkClass}>
+                        {item.name}
                       </Link>
                     </li>
                   ))}
@@ -117,16 +118,15 @@ const Footer = () => {
               </div>
 
               <div className="min-w-[180px]">
-                <h3 className="mb-4 text-lg font-semibold tracking-[0.18em] uppercase">
+                <h3 className="mb-4 text-lg tracking-[0.18em] uppercase">
                   КАТАЛОГ КАМНЯ
                 </h3>
-
-                <ul className="space-y-2 text-sm md:text-base">
+                <ul className="space-y-2 text-sm">
                   {stoneLinks.map((item) => (
                     <li key={item.id}>
                       <Link
                         href={`/catalog-stone/${item.slug}`}
-                        className={`${footerLinkClass}`}
+                        className={footerLinkClass}
                       >
                         {item.name}
                       </Link>
@@ -136,16 +136,15 @@ const Footer = () => {
               </div>
 
               <div className="min-w-[200px]">
-                <h3 className="mb-4 text-lg font-semibold tracking-[0.18em] uppercase">
+                <h3 className="mb-4 text-lg tracking-[0.18em] uppercase">
                   КАТАЛОГ ИЗДЕЛИЙ
                 </h3>
-
-                <ul className="space-y-2 text-sm md:text-base">
+                <ul className="space-y-2 text-sm">
                   {productLinks.map((item) => (
                     <li key={item.id}>
                       <Link
                         href={`/catalog-product/${item.slug}`}
-                        className={`${footerLinkClass}`}
+                        className={footerLinkClass}
                       >
                         {item.name}
                       </Link>
@@ -154,10 +153,12 @@ const Footer = () => {
                 </ul>
               </div>
 
-              <div className="flex flex-1 flex-col gap-4 lg:items-end">
+              {/* LOGO + INFO (LOGO TOUCHED EMAS) */}
+              <div className="flex flex-1 flex-col gap-6 lg:items-end">
+                {/* LOGO — TEGILMADI */}
                 <Link
                   href="/"
-                  className="mb-3 cursor-pointer hover:opacity-90 transition flex items-center gap-4 lg:justify-end"
+                  className="mb-2 cursor-pointer hover:opacity-90 transition flex items-center gap-4 lg:justify-end"
                 >
                   <Image
                     alt="site logo"
@@ -168,48 +169,41 @@ const Footer = () => {
                   />
                 </Link>
 
-                {/* COMPANY INFO */}
-                <div className="text-sm md:text-base space-y-2 text-left lg:text-right text-[#f5eee5]">
-                  <p className="opacity-90">{contact?.author_name ?? "—"}</p>
-                  <p className="opacity-90">ИНН: {contact?.inn ?? "—"}</p>
+                {/* INFO — YANGI DIZAYN */}
+                <div className="max-w-[420px] text-sm space-y-2 lg:text-right">
+                  <p className="tracking-wide">{contact?.author_name}</p>
+                  <p>ИНН: {contact?.inn}</p>
 
-                  <p className="flex items-start lg:items-start justify-start lg:justify-end gap-2 opacity-90">
-                    <MapPin className="w-4 h-4 mt-[3px] text-[#d7b06a]" />
+                  <div className="flex gap-2 lg:justify-end items-start">
+                    <MapPin className="w-4 h-4 mt-[2px] text-[#d7b06a]" />
                     <span>
-                      {contact?.address ?? "—"} <br />
-                      {contact?.time_working ?? "—"}
+                      {contact?.address}
+                      <br />
+                      {contact?.time_working}
                     </span>
-                  </p>
+                  </div>
 
-                  <p className="mt-3">
-                    <a
-                      href={
-                        contact?.phone
-                          ? `tel:${contact.phone.replace(/\s|\(|\)|-/g, "")}`
-                          : "#"
-                      }
-                      className={`${footerLinkClass} flex justify-start lg:justify-end items-center gap-2`}
-                    >
-                      <Phone className="w-4 h-4 text-[#d7b06a]" />
-                      {contact?.phone ?? "—"}
-                    </a>
-                  </p>
+                  <a
+                    href={`tel:${contact?.phone?.replace(/\s|\(|\)|-/g, "")}`}
+                    className="flex items-center gap-2 lg:justify-end hover:text-[#d7b06a] transition"
+                  >
+                    <Phone className="w-4 h-4 text-[#d7b06a]" />
+                    {contact?.phone}
+                  </a>
 
-                  <p>
-                    <a
-                      href={contact?.email ? `mailto:${contact.email}` : "#"}
-                      className={`${footerLinkClass} flex justify-start lg:justify-end items-center gap-2`}
-                    >
-                      <Mail className="w-4 h-4 text-[#d7b06a]" />
-                      {contact?.email ?? "—"}
-                    </a>
-                  </p>
+                  <a
+                    href={`mailto:${contact?.email}`}
+                    className="flex items-center gap-2 lg:justify-end hover:text-[#d7b06a] transition"
+                  >
+                    <Mail className="w-4 h-4 text-[#d7b06a]" />
+                    {contact?.email}
+                  </a>
                 </div>
               </div>
             </div>
 
-            {/* COPYRIGHT LINE */}
-            <div className="mt-12 border-t border-white/10 pt-5 text-center text-[11px] md:text-xs text-[#c9b9a1]">
+            {/* COPYRIGHT */}
+            <div className="mt-14 border-t border-white/10 pt-5 text-center text-[11px] text-[#c9b9a1]">
               © 2025 МАСТЕРСКАЯ МРАМОРНЫХ ИНТЕРЬЕРОВ. Информация на сайте не
               является публичной офертой. Уточняйте стоимость у менеджера отдела
               продаж.

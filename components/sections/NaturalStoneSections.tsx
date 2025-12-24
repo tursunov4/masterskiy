@@ -16,7 +16,7 @@ const interiorGroups: CategoryGroup[] = [
       { label: "СТОЛЕШНИЦЫ" },
       { label: "ЛЕСТНИЦЫ" },
       { label: "КАМИНЫ" },
-      { label: "ВАННЫ И SPA", highlighted: true },
+      { label: "ВАННЫ И SPA" },
     ],
   },
   {
@@ -72,7 +72,7 @@ const CategoryColumn = ({ groups }: { groups: CategoryGroup[] }) => {
                 className={`flex w-full items-center justify-center border border-black px-4 py-2 text-[12px] tracking-[0.12em] uppercase transition ${
                   item.highlighted
                     ? "bg-[#c79b60] text-[#231f20]"
-                    : "bg-white hover:bg-[#f3eee4]"
+                    : "bg-white hover:bg-[#c0a57c]"
                 }`}
               >
                 {item.label}

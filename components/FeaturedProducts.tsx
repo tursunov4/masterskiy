@@ -125,36 +125,40 @@ export default function FeaturedProducts() {
             <Link
               href={item.href}
               key={item.id}
-              className="group flex flex-col items-center text-[#111111] cursor-pointer
-                         transition-transform duration-300 ease-out hover:-translate-y-3"
+              className="group flex flex-col items-center cursor-pointer
+               transition-transform duration-300 ease-out hover:-translate-y-3"
             >
               <div
-                className="w-full h-[240px] md:h-[260px] relative overflow-hidden bg-[#111]
-                           rounded-sm ring-0 ring-[#d7b06a]/60
-                           transition-[transform,box-shadow,ring] duration-300
-                           group-hover:shadow-xl group-hover:shadow-black/25 group-hover:ring-[1.5px]"
+                className="w-full h-[260px] relative overflow-hidden
+                 bg-white
+                 border border-transparent
+                 transition-all duration-300 ease-out
+                 group-hover:border-[#d7b06a]
+                 group-hover:shadow-xl"
               >
                 <Image
                   src={item.image}
                   alt={item.title}
                   fill
-                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                  className="object-cover transition-transform duration-500 ease-out
+                   group-hover:scale-105"
                 />
-
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent opacity-0 group-hover:opacity-80 transition-opacity duration-300" />
               </div>
 
               <h3
-                className="mt-4 text-center text-[16px] md:text-[18px] uppercase tracking-[0.12em]
-                           transition-colors duration-300 group-hover:text-[#d7b06a]"
+                className="mt-6 text-center border-b   text-[18px] uppercase tracking-[0.14em]
+                 text-[#2b2b2b]
+                 transition-colors duration-300
+                 group-hover:text-[#d7b06a] hover:border-[#d7b06a] "
               >
                 {item.title}
               </h3>
 
               <span
-                className="mt-3 inline-block bg-[#d7b06a] px-3.5 py-1.5 text-[13px] md:text-[14px]
-                           text-[#3c2f1e] tracking-[0.06em] uppercase
-                           transition-colors duration-300 group-hover:bg-[#111111] group-hover:text-[#d7b06a]"
+                className="mt-4 inline-block bg-[#c0a57c]
+                 px-5 py-2 text-[15px]
+                 text-[#3c2f1e]
+                 tracking-wide"
               >
                 {item.price}
               </span>
