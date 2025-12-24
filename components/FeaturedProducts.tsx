@@ -170,9 +170,9 @@ export default function FeaturedProducts() {
         <div className="mt-10 flex justify-end">
           <Link
             href={"/our-projects"}
-            className="group inline-flex items-center gap-2 border border-[#111111] px-5 py-2.5 text-[13px] md:text-[14px]
+            className="group inline-flex items-center gap-2 border border-[#111111] px-5 py-1 text-[13px] md:text-[14px]
                        tracking-[0.08em] uppercase
-                       hover:bg-[#111111] hover:text-white transition-colors duration-300
+                       hover:bg-[#c0a57c] hover:text-white transition-colors duration-300
                        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#111111]"
           >
             Все изделия

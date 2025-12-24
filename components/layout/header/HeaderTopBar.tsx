@@ -319,7 +319,7 @@ const HeaderTopBar: React.FC<HeaderTopBarProps> = ({
                     className="group relative inline-flex items-center justify-center
                  w-9 h-9 rounded-full
                  transition-colors duration-300
-                 hover:bg-[#d7b06a]"
+                 "
                   >
                     {/* default */}
                     <Image
@@ -353,7 +353,7 @@ const HeaderTopBar: React.FC<HeaderTopBarProps> = ({
                     className="group relative inline-flex items-center justify-center
                  w-9 h-9 rounded-full
                  transition-colors duration-300
-                 hover:bg-[#d7b06a]"
+            "
                   >
                     <Image
                       src="/images/svg/wh.svg"
@@ -385,7 +385,7 @@ const HeaderTopBar: React.FC<HeaderTopBarProps> = ({
                     className="group relative inline-flex items-center justify-center
                  w-9 h-9 rounded-full
                  transition-colors duration-300
-                 hover:bg-[#d7b06a]"
+                "
                   >
                     <Image
                       src="/images/svg/tg.svg"

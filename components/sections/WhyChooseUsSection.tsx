@@ -6,11 +6,11 @@ const WhyChooseUsSection = () => {
   const router = useRouter();
 
   return (
-    <section className="bg-[url('/images/png/choose.png')] bg-cover bg-center bg-no-repeat text-[#f5eee5]">
+    <section className="bg-[url('/images/png/choose.png')] bg-cover bg-center bg-no-repeat text-[#c0a57c]">
       <div className="container">
         <div className="relative py-5 overflow-hidden">
           <div className="relative z-10 flex h-full items-center">
-            <div className="px-6 sm:px-10 py-8 lg:px-14 max-w-xl text-[#f5eee5]">
+            <div className="px-6 sm:px-10 py-8 lg:px-14 max-w-xl text-[#c0a57c]">
               <h2
                 className="text-lg sm:text-xl lg:text-2xl tracking-[0.14em] uppercase mb-4 relative inline-block
             "
@@ -43,8 +43,8 @@ const WhyChooseUsSection = () => {
               <button
                 onClick={() => router.push("/our-projects")}
                 className="inline-flex items-center gap-2 bg-[#c79b60] px-5 py-2 text-xs sm:text-sm uppercase 
-                tracking-[0.12em] text-[#231f20] transition-all duration-300 rounded-sm
-                hover:bg-[#d8b976] hover:shadow-lg active:scale-[0.97] focus:ring-2 focus:ring-[#d8b976]"
+                tracking-[0.12em] text-[#231f20] transition-all duration-300 
+                hover:bg-[#c0a57c] hover:shadow-lg active:scale-[0.97] focus:ring-2 focus:ring-[#]"
               >
                 Обсудить проект
                 <span className="text-base">»</span>
