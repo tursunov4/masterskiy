@@ -159,7 +159,7 @@ const HeaderTopBar: React.FC<HeaderTopBarProps> = ({
   return (
     <div className="bg-[#111111] text-[#f6f2ea]">
       <div className="container">
-        <div className="py-2.5 flex items-start gap-4 md:gap-6">
+        <div className="py-2.5 flex items-center gap-4 md:gap-6">
           {/* LOGO */}
           <Link href="/" className="flex-shrink-0 flex items-center">
             <Image
@@ -174,7 +174,11 @@ const HeaderTopBar: React.FC<HeaderTopBarProps> = ({
           <div className="hidden md:flex flex-1 items-center  ">
             <div className="flex flex-col flex-1 justify-between gap-3 mb-[10px]">
               <nav className="flex items-center gap-5">
-                {NAV_LINKS.map((item) => (
+                {NAV_LINKS.filter(
+                  (item) =>
+                    item.label !== "КОНТАКТЫ" &&
+                    item.label !== "ЦЕРКОВНОЕ ИСКУССТВО"
+                ).map((item) => (
                   <Link
                     key={item.label}
                     href={item.href}
@@ -183,6 +187,15 @@ const HeaderTopBar: React.FC<HeaderTopBarProps> = ({
                     {item.label}
                   </Link>
                 ))}
+                <Link
+                  className="text-[11px] md:text-[12px] leading-[1.2] tracking-[0.12em] uppercase bg-[#c0a57c] text-[#231f20] px-4 py-1 hover:bg-[#f5f5f5]"
+                  href={"/church-art"}
+                >
+                  ЦЕРКОВНОЕ ИСКУССТВО
+                </Link>
+                <Link href="/contact" className={navLinkClass("/contact")}>
+                  КОНТАКТЫ
+                </Link>
               </nav>
 
               {/* SEARCH */}

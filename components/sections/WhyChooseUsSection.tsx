@@ -1,9 +1,11 @@
 "use client";
 
+import { useAppDispatch } from "@/store/hooks";
+import { openConsult } from "@/store/slices/consult.slice";
 import { useRouter } from "next/navigation";
 
 const WhyChooseUsSection = () => {
-  const router = useRouter();
+  const dispatch = useAppDispatch();
 
   return (
     <section className="bg-[url('/images/png/choose.png')] bg-cover bg-center bg-no-repeat text-[#c0a57c]">
@@ -27,10 +29,7 @@ const WhyChooseUsSection = () => {
                   "✓ Международный опыт — реализовано более 250 проектов",
                   "✓ Абсолютная дискретность — ваша приватность под защитой",
                 ].map((item, index) => (
-                  <p
-                    key={index}
-                    className="transition duration-200 hover:text-[#fff7ec]"
-                  >
+                  <p key={index} className="transition duration-200 ">
                     {item}
                   </p>
                 ))}
@@ -41,7 +40,7 @@ const WhyChooseUsSection = () => {
               </p>
 
               <button
-                onClick={() => router.push("/our-projects")}
+                onClick={() => dispatch(openConsult())}
                 className="inline-flex items-center gap-2 bg-[#c79b60] px-5 py-2 text-xs sm:text-sm uppercase 
                 tracking-[0.12em] text-[#231f20] transition-all duration-300 
                 hover:bg-[#c0a57c] hover:shadow-lg active:scale-[0.97] focus:ring-2 focus:ring-[#]"

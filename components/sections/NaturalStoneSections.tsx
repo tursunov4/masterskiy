@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 type CategoryGroup = {
   title: string;
@@ -67,7 +68,8 @@ const CategoryColumn = ({ groups }: { groups: CategoryGroup[] }) => {
           </span>
           <div className="flex flex-col gap-1">
             {group.items.map((item) => (
-              <button
+              <Link
+                href={`/catalog-product/test`}
                 key={item.label}
                 className={`flex w-full items-center justify-center border border-black px-4 py-2 text-[12px] tracking-[0.12em] uppercase transition ${
                   item.highlighted
@@ -76,7 +78,7 @@ const CategoryColumn = ({ groups }: { groups: CategoryGroup[] }) => {
                 }`}
               >
                 {item.label}
-              </button>
+              </Link>
             ))}
           </div>
         </div>
@@ -94,14 +96,14 @@ const NaturalStoneSections = () => {
             <div className="grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,1.3fr)] items-start">
               <div>
                 <div className="flex items-start gap-6 mb-4">
-                  <span className="text-4xl sm:text-5xl text-[#c79b60] font-light">
-                    01
+                  <span className="text-4xl sm:text-8xl text-[#c79b60] ">
+                    01.
                   </span>
                   <div>
-                    <h2 className="text-[16px] sm:text-[18px] tracking-[0.15em] uppercase">
+                    <h2 className="text-[16px] sm:text-[20px] tracking-[0.15em] uppercase">
                       НАТУРАЛЬНЫЙ КАМЕНЬ ДЛЯ ВНУТРЕННЕЙ ОТДЕЛКИ
                     </h2>
-                    <p className="mt-2 text-[13px] sm:text-[14px] leading-relaxed max-w-xl">
+                    <p className="mt-2 text-[13px] sm:text-[16px] leading-relaxed max-w-xl">
                       От изысканных мраморных полов до роскошных каменных
                       столешниц — мы предлагаем комплексные решения для вашего
                       интерьера. Единство материала в разных зонах создает
@@ -136,14 +138,14 @@ const NaturalStoneSections = () => {
 
               <div>
                 <div className="flex items-start gap-6 mb-4">
-                  <span className="text-4xl sm:text-5xl text-[#c79b60] font-light">
-                    02
+                  <span className="text-4xl sm:text-8xl text-[#c79b60]">
+                    02.
                   </span>
                   <div>
-                    <h2 className="text-[16px] sm:text-[18px] tracking-[0.15em] uppercase">
+                    <h2 className="text-[16px] sm:text-[20px] tracking-[0.15em] uppercase">
                       НАТУРАЛЬНЫЙ КАМЕНЬ ДЛЯ ВНЕШНЕЙ ОТДЕЛКИ
                     </h2>
-                    <p className="mt-2 text-[13px] sm:text-[14px] leading-relaxed max-w-xl">
+                    <p className="mt-2 text-[13px] sm:text-[16px] leading-relaxed max-w-xl">
                       От элегантных фасадов до долговечных мощеных площадок —
                       натуральный камень подчеркивает статус вашего дома. Каждый
                       элемент экстерьера становится частью цельного

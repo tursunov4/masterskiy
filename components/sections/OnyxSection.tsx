@@ -25,8 +25,8 @@ const OnyxSection = () => {
         <div className="w-full lg:max-w-[520px] flex justify-center lg:justify-start">
           <div className="w-full space-y-[8px] bg-[#111111]">
             {/* HEADER */}
-            <div className="bg-[#d9d9d5] px-6 md:px-3 py-4 text-center border border-[#111111] border-b-0">
-              <h2 className="text-[13px] md:text-[17px]  font-medium tracking-[0.18em] uppercase leading-snug">
+            <div className="bg-[#d9d9d5] px-6 md:px-1 py-4 text-center border border-[#111111] border-b-0">
+              <h2 className="text-[13px] md:text-[18px]  font-medium tracking-[0.18em] uppercase leading-snug">
                 ОНИКС И ДРУГИЕ СВЕТОНОСНЫЕ КАМНИ
               </h2>
               <p className="mt-1 text-[12px] md:text-[16px]  leading-snug">
@@ -35,7 +35,7 @@ const OnyxSection = () => {
             </div>
 
             {/* TEXT */}
-            <div className="bg-[#d9d9d5] px-6 md:px-7 py-5 text-[12.5px] md:text-[13.5px] leading-[1.65] border border-[#111111] border-t-0 border-b-0">
+            <div className="bg-[#d9d9d5] px-6 md:px-7 py-5 text-[14px] md:text-[15px] leading-[1.65] border border-[#111111] border-t-0 border-b-0">
               <p>
                 Оникс, селенит, полупрозрачный мрамор, кварцит — природные
                 материалы, которые преображаются при подсветке.

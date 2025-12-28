@@ -56,8 +56,8 @@ const CategoriesStrip: React.FC<CategoriesStripProps> = ({ pathname }) => {
   const catClass = (href: string) => {
     const active = isActivePath(pathname, href);
     return [
-      "flex items-center gap-2 px-3 md:px-4 py-[6px]",
-      "text-[11px] md:text-[12px] uppercase tracking-[0.07em] whitespace-nowrap flex-shrink-0",
+      "flex items-center gap-2 px-3 md:px-4  py-[12px]",
+      "text-[11px] md:text-[12px] hover:bg-[#c0a57c]  uppercase tracking-[0.07em] whitespace-nowrap flex-shrink-0",
       "transition-colors",
       active
         ? "text-[#111111] font-medium"
@@ -81,8 +81,24 @@ const CategoriesStrip: React.FC<CategoriesStripProps> = ({ pathname }) => {
   return (
     <div className="bg-[#f5f5f5] hidden lg:block">
       <div className="container">
-        <div className="py-2.5 flex items-stretch gap-2.5">
+        <div className=" flex  items-stretch gap-2.5">
           <ul className="flex-1 flex items-center gap-2 overflow-x-auto">
+            <li>
+              <Link
+                href="/catalog-product"
+                className={
+                  "text-[11px] my-[5px] hover:bg-[#9E8968] flex bg-[#c0a57c] px-3 md:px-4 py-1 min-w-[220px] items-center gap-2 md:text-[12px] uppercase tracking-[0.07em] whitespace-nowrap flex-shrink-0"
+                }
+              >
+                <span className={circleClass("/catalog-product")}>
+                  <SquareDashedBottomCode
+                    className="w-4 h-4"
+                    color={iconColor("/catalog-product")}
+                  />
+                </span>
+                <span>КАТАЛОГ ИЗДЕЛИЙ</span>
+              </Link>
+            </li>
             {categories.map((cat) => (
               <li key={cat.name} className="group">
                 <Link href={cat.href} className={catClass(cat.href)}>

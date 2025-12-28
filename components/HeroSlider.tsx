@@ -122,7 +122,7 @@ const HeroSlider = () => {
     swiperInstance?.slideToLoop(index);
 
   return (
-    <section className="py-6 md:py-10">
+    <section className="py-4 md:py-5">
       <div className="container">
         <div className="relative">
           <Swiper
@@ -134,7 +134,7 @@ const HeroSlider = () => {
           >
             {slides.map((slide) => (
               <SwiperSlide key={slide.id}>
-                <div className="relative mx-auto h-[230px] sm:h-[280px] lg:h-[330px] xl:h-[360px] md:max-w-[calc(100%-70px)] overflow-hidden bg-black">
+                <div className="relative mx-auto h-[230px] sm:h-[280px] lg:h-[310px] xl:h-[300px] md:max-w-[calc(100%-70px)] overflow-hidden bg-black">
                   <Image
                     src={slide.image}
                     alt={slide.alt ?? slide.title}

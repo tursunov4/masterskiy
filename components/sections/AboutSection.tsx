@@ -30,10 +30,11 @@ const AboutSection = () => {
           ))}
         </div>
 
-        <h3 className="text-center text-xl sm:text-2xl md:text-[28px] tracking-[0.08em] uppercase">
+        <h3 className="text-center text-xl sm:text-2xl md:text-[32px] tracking-[0.08em] uppercase">
           Мастерская мраморных интерьеров
         </h3>
 
+        {/* <div className="max-w-3xl mx-auto"> */}
         <div className="mt-4 bg-[#c0a57c] px-4 py-3 sm:px-6 sm:py-4 text-[13px] sm:text-[14px] leading-relaxed">
           <p>“Я беру камень и отсекаю всё лишнее.” — Микеланджело</p>
           <p>“И у камня есть сердце.” — японская пословица</p>
@@ -44,11 +45,12 @@ const AboutSection = () => {
         </div>
 
         {/* DESCRIPTION */}
-        <p className="mt-6 text-[14px] sm:text-[15px] leading-relaxed text-center sm:text-left">
+        <p className="mt-6  text-[14px] sm:text-[15px] leading-relaxed text-center sm:text-left">
           Мы не просто работаем с камнем — мы помогаем ему рассказать вашу
           историю. Историю, которая переживет века.
         </p>
       </div>
+      {/* </div> */}
     </section>
   );
 };
