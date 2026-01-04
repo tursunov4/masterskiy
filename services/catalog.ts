@@ -1,4 +1,3 @@
-// services/catalog.ts
 import { apiFetch } from "@/lib/api";
 
 export type Category = {

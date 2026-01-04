@@ -5,10 +5,13 @@ import { usePathname } from "next/navigation";
 import HeaderTopBar from "./HeaderTopBar";
 import CategoriesStrip from "./CategoriesStrip";
 import MobileMenu from "./MobileMenu";
+import DesktopStickyCompactHeader from "./DesktopStickyCompactHeader";
+import { useAppSelector } from "@/store/hooks";
 
-const Header: React.FC = () => {
-  const [mobileOpen, setMobileOpen] = useState(false);
+export default function Header() {
   const pathname = usePathname() || "/";
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const contact = useAppSelector((s) => s.contact.data);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
@@ -18,19 +21,26 @@ const Header: React.FC = () => {
   }, [mobileOpen]);
 
   return (
-    <header className="w-full relative z-40">
-      <HeaderTopBar
-        pathname={pathname}
-        onOpenMobileMenu={() => setMobileOpen(true)}
+    <>
+      {/* 🖥 desktop uchun compact fixed header */}
+      <DesktopStickyCompactHeader
+        phone={contact?.phone}
+        email={contact?.email}
       />
-      <CategoriesStrip pathname={pathname} />
-      <MobileMenu
-        open={mobileOpen}
-        onClose={() => setMobileOpen(false)}
-        pathname={pathname}
-      />
-    </header>
-  );
-};
 
-export default Header;
+      {/* 📱 mobile uchun header sticky */}
+      <header className="w-full fixed md:static  top-0 z-40">
+        <HeaderTopBar
+          pathname={pathname}
+          onOpenMobileMenu={() => setMobileOpen(true)}
+        />
+        <CategoriesStrip pathname={pathname} />
+        <MobileMenu
+          open={mobileOpen}
+          onClose={() => setMobileOpen(false)}
+          pathname={pathname}
+        />
+      </header>
+    </>
+  );
+}

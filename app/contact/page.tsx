@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo } from "react";
 import {
-  Building2,
   MapPin,
   Phone,
   Mail,

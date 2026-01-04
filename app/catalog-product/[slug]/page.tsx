@@ -5,6 +5,6 @@ type PageProps = {
 };
 
 export default async function Page({ params }: PageProps) {
-  const { slug } = await params; // ✅ Next 16
+  const { slug } = await params;
   return <CatalogProductSlugClient slug={slug} />;
 }

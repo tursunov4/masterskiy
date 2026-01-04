@@ -14,7 +14,6 @@ const MarbleIdeaSection = () => {
         height={400}
         className="object-cover w-full h-full"
       />
-
       <div className="absolute inset-0 bg-black/10" />
 
       <div className="container  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">

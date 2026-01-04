@@ -40,7 +40,6 @@ function productHref(p: ApiProduct) {
   const cat = p.category?.slug ?? "";
   const sub = p.subcategory?.slug ?? "item";
   const slug = p.slug ?? "item";
-
   if (cat === "katalog-izdelij") return `/catalog-product/${sub}/${slug}`;
   if (cat === "katalog-kamnya") return `/catalog-stone/${sub}/${slug}`;
   if (cat === "cerkovnoe-iskusstvo") return `/church-art/${sub}/${slug}`;
@@ -324,13 +323,13 @@ const HeaderTopBar: React.FC<HeaderTopBarProps> = ({
                 )}
               </div>
 
-              <div className="flex items-center gap-2.5 mt-1.5">
+              <div className="flex items-center gap-[12px] mt-1.5">
                 {/* EMAIL */}
                 {contact?.email && (
                   <a
                     href={`mailto:${contact.email}`}
                     className="group relative inline-flex items-center justify-center
-                 w-9 h-9 rounded-full
+              rounded-full  w-6 h-6
                  transition-colors duration-300
                  "
                   >
@@ -364,7 +363,7 @@ const HeaderTopBar: React.FC<HeaderTopBarProps> = ({
                     href={contact.whatsapp}
                     target="_blank"
                     className="group relative inline-flex items-center justify-center
-                 w-9 h-9 rounded-full
+              rounded-full  w-6 h-6
                  transition-colors duration-300
             "
                   >
@@ -396,7 +395,8 @@ const HeaderTopBar: React.FC<HeaderTopBarProps> = ({
                     href={contact.telegram}
                     target="_blank"
                     className="group relative inline-flex items-center justify-center
-                 w-9 h-9 rounded-full
+                    w-6 h-6
+         rounded-full
                  transition-colors duration-300
                 "
                   >

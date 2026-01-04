@@ -9,6 +9,9 @@ import ConsultModal from "@/components/modals/ConsultModal";
 import ConsultToast from "@/components/ui/ConsultToast";
 
 import { getSeo } from "@/lib/seo";
+import ScrollToTopOnRouteChange from "@/components/layout/ScrollToTopOnRouteChange";
+import FloatingContactWidgetClient from "@/components/layout/FloatingContactWidgetClient";
+import { Suspense } from "react";
 const palatino = localFont({
   src: [
     {
@@ -71,13 +74,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${palatino.variable} antialiased`}>
-        <Providers>
-          <Header />
-          {children}
-          <ConsultModal />
-          <ConsultToast />
-          <Footer />
-        </Providers>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Providers>
+            <ScrollToTopOnRouteChange />
+            <FloatingContactWidgetClient />
+            <Header />
+            <main className="mt-15 md:mt-0">{children}</main>
+            <ConsultModal />
+            <ConsultToast />
+            <Footer />
+          </Providers>
+        </Suspense>
       </body>
     </html>
   );

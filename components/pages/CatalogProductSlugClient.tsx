@@ -109,7 +109,6 @@ export default function CatalogProductSlugClient({ slug }: { slug: string }) {
     };
   }, []);
 
-  // load products (slug/color/mozayka o‘zgarsa -> 1 page)
   useEffect(() => {
     let cancelled = false;
 
@@ -343,7 +342,6 @@ export default function CatalogProductSlugClient({ slug }: { slug: string }) {
                 </div>
               </div>
 
-              {/* CLEAR */}
               <button
                 type="button"
                 onClick={clearFilters}

@@ -104,7 +104,7 @@ const Footer = () => {
                     { name: "Доставка", href: "/#" },
                     {
                       name: "Полезная информация",
-                      href: "/poleznaya-informatsiya",
+                      href: "/info",
                     },
                     { name: "Контакты", href: "/contact" },
                   ].map((item, idx) => (
@@ -154,11 +154,11 @@ const Footer = () => {
               </div>
 
               {/* LOGO + INFO (LOGO TOUCHED EMAS) */}
-              <div className="flex flex-1 flex-col gap-6 lg:items-end">
+              <div className="flex flex-1 flex-col gap-6 lg:items-center">
                 {/* LOGO — TEGILMADI */}
                 <Link
                   href="/"
-                  className="mb-2 cursor-pointer hover:opacity-90 transition flex items-center gap-4 lg:justify-end"
+                  className="mb-2 cursor-pointer hover:opacity-90 transition flex items-center gap-4 lg:justify-center"
                 >
                   <Image
                     alt="site logo"
@@ -170,12 +170,11 @@ const Footer = () => {
                 </Link>
 
                 {/* INFO — YANGI DIZAYN */}
-                <div className="max-w-[420px] text-sm space-y-2 lg:text-right">
+                <div className="max-w-[420px] text-sm space-y-2   ">
                   <p className="tracking-wide">{contact?.author_name}</p>
                   <p>ИНН: {contact?.inn}</p>
 
-                  <div className="flex gap-2 lg:justify-end items-start">
-                    <MapPin className="w-4 h-4 mt-[2px] text-[#d7b06a]" />
+                  <div className="flex gap-2 items-start">
                     <span>
                       {contact?.address}
                       <br />
@@ -185,7 +184,7 @@ const Footer = () => {
 
                   <a
                     href={`tel:${contact?.phone?.replace(/\s|\(|\)|-/g, "")}`}
-                    className="flex items-center gap-2 lg:justify-end hover:text-[#d7b06a] transition"
+                    className="flex items-center gap-2  hover:text-[#d7b06a] transition"
                   >
                     <Phone className="w-4 h-4 text-[#d7b06a]" />
                     {contact?.phone}
@@ -193,7 +192,7 @@ const Footer = () => {
 
                   <a
                     href={`mailto:${contact?.email}`}
-                    className="flex items-center gap-2 lg:justify-end hover:text-[#d7b06a] transition"
+                    className="flex items-center gap-2  hover:text-[#d7b06a] transition"
                   >
                     <Mail className="w-4 h-4 text-[#d7b06a]" />
                     {contact?.email}
