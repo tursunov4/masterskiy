@@ -7,7 +7,6 @@ import Header from "@/components/layout/header/Header";
 import Providers from "./providers";
 import ConsultModal from "@/components/modals/ConsultModal";
 import ConsultToast from "@/components/ui/ConsultToast";
-
 import { getSeo } from "@/lib/seo";
 import ScrollToTopOnRouteChange from "@/components/layout/ScrollToTopOnRouteChange";
 import FloatingContactWidgetClient from "@/components/layout/FloatingContactWidgetClient";

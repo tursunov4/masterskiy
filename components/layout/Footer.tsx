@@ -14,15 +14,16 @@ const PRODUCT_CATEGORY_SLUG = `katalog-izdelij`;
 const Footer = () => {
   const dispatch = useAppDispatch();
   const contact = useAppSelector((s) => s.contact.data);
-
   useEffect(() => {
     dispatch(fetchContactInfo());
   }, [dispatch]);
 
   const footerLinkClass =
-    "relative inline-flex items-center pb-[2px] " +
-    "after:absolute after:left-0 after:-bottom-[1px] after:h-[1px] after:bg-[#d7b06a] after:transition-all after:w-0 " +
-    "hover:text-[#d7b06a] hover:after:w-full";
+    "relative inline-flex items-center pb-[2px] text-white " +
+    "before:absolute before:left-[-12px] before:right-[-12px] before:top-[-6px] before:bottom-[-6px] " +
+    "before:border before:border-white/70 " +
+    "before:opacity-0 before:transition-opacity before:duration-200 " +
+    "hover:before:opacity-100";
 
   const stoneFallback = [
     { id: 1, name: "Мрамор", slug: "marble" },
