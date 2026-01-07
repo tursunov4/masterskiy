@@ -5,6 +5,7 @@ import { SquareDashedBottomCode } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { CATEGORIES as STATIC_CATEGORIES, isActivePath } from "./navConfig";
 import { getSubcategories, type Subcategory } from "@/services/catalog";
+import Image from "next/image";
 
 type CategoriesStripProps = {
   pathname: string;
@@ -99,15 +100,10 @@ const CategoriesStrip: React.FC<CategoriesStripProps> = ({ pathname }) => {
                 <span>КАТАЛОГ ИЗДЕЛИЙ</span>
               </Link>
             </li>
-            {categories.map((cat) => (
+            {STATIC_CATEGORIES.map((cat) => (
               <li key={cat.name} className="group">
                 <Link href={cat.href} className={catClass(cat.href)}>
-                  <span className={circleClass(cat.href)}>
-                    <SquareDashedBottomCode
-                      className="w-4 h-4"
-                      color={iconColor(cat.href)}
-                    />
-                  </span>
+                  <Image src={cat.icon} alt={cat.name} width={30} height={30} />
                   <span>{cat.name}</span>
                 </Link>
               </li>

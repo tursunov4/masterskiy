@@ -7,6 +7,7 @@ export type NavLink = {
 export type CategoryLink = {
   name: string;
   href: string;
+  icon: string;
 };
 
 export const NAV_LINKS: NavLink[] = [
@@ -19,32 +20,34 @@ export const NAV_LINKS: NavLink[] = [
 
 export const CATEGORIES: CategoryLink[] = [
   {
-    name: "КАТАЛОГ ИЗДЕЛИЙ",
-    href: "/catalog-product",
-  },
-  {
     name: "СТОЛЕШНИЦЫ",
-    href: "/catalog-product?type=countertops",
+    href: "/catalog-product/stoleshnicy",
+    icon: "/images/svg/1.svg",
   },
   {
     name: "КАМНИ",
-    href: "/catalog-stone",
+    href: "/catalog-stone/kaminy",
+    icon: "/images/svg/2.svg",
   },
   {
     name: "ЛЕСТНИЦЫ",
-    href: "/catalog-product?type=stairs",
+    href: "/catalog-product/lestnicy",
+    icon: "/images/svg/3.svg",
   },
   {
     name: "ПОЛЫ",
-    href: "/catalog-product?type=floor",
+    href: "/catalog-product/poly",
+    icon: "/images/svg/4.svg",
   },
   {
     name: "СТЕНЫ",
-    href: "/catalog-product?type=walls",
+    href: "/catalog-product/steny",
+    icon: "/images/svg/5.svg",
   },
   {
     name: "ПОДОКОННИКИ",
-    href: "/catalog-product?type=sills",
+    href: "/catalog-product/podokonniki",
+    icon: "/images/svg/6.svg",
   },
 ];
 

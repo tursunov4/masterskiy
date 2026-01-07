@@ -31,9 +31,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ======================
-   CONTAINER
-====================== */
 .container {
   max-width: 1300px;
   margin: 0 auto;
